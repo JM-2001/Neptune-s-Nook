@@ -114,10 +114,8 @@
     width: 100%;
     line-height: 50px;
     color: #000000;
-
-footer {
-
 }
+
 .footer-div {
     display: flex;
     
@@ -138,4 +136,4 @@ footer {
     float: right;
     padding: 0%;
     margin: 5px 10px;
-  }
+}
