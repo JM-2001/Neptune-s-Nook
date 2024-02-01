@@ -116,13 +116,19 @@
     color: #000000;
 }
 
+footer {
+    background-color: chocolate;
+}
+
 .footer-div {
     display: flex;
-    
+
 }
+
 .footer-div a {
     text-decoration: none;
 }
+
 .footer-ul-left {
     list-style-type: none;
     float: left;
