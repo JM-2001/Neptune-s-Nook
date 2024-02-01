@@ -4,48 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="#">
+    <link rel="stylesheet" type="text/css" href="Styles/styles.css">
     <title>Neptune's Nook Splash Page</title>
 </head>
 
 <body>
     <header>
-        <nav>
-            <img alt="Neptune's Nook Logo" src="#">
-            <ul>
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-                <li>
-                    <a href="#">Fish Tanks</a>
-                </li>
-                <li>
-                    <a href="#">Tank Decor</a>
-                </li>
-                <li>
-                    <a href="#">Tank Supplies</a>
-                </li>
-                <li>
-                    <a href="#">Fish Supplies</a>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="#">
-                        <img alt="Neptune's Nook Search Image" src="#">
+        <nav class="nav-bar">
+            <div class="top-nav-bar">
+                <div class="top-nav-bar-left">
+                    <a href="index.html">
+                        <img alt="Neptune's Nook Logo" src="/Images/logo-transparent.png">
                     </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img alt="Neptune's Nook Shopping Cart Image" src="#">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img alt="Neptune's Nook Account Image" src="#">
-                    </a>
-                </li>
-            </ul>
+                </div>
+                <div class="top-nav-bar-right">
+                    <div class="search-bar">
+                        <form class="search-bar">
+                            <input type="text" id="searchTextBar" name="searchTextBar">
+                            <label for="searchTextBar">
+                                <button type="submit">
+                                    <img alt="search icon" src="/Images/search.png">
+                                </button>
+                            </label>
+                        </form>
+                    </div>
+                    <div>
+                        <a href="#">
+                            <img alt="Neptune's Nook Shopping Cart Image" src="/Images/shopping-cart.png">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#">
+                            <img alt="Neptune's Nook Account Image" src="/Images/user.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-nav-bar">
+
+            </div>
         </nav>
     </header>
     <main>
