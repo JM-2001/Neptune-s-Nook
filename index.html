@@ -38,13 +38,29 @@
                             <img alt="Neptune's Nook Account Image" src="Images/user.png">
                         </a>
                     </div>
+                    <div id="top-nav-bar-right-ham-div">
+                        <button type="button" onclick="displayBottomNav()">
+                            <img alt="hamburger button" src="Images/menu.png" id="top-nav-bar-right-ham-img">
+                        </button>
+
+                    </div>
                 </div>
             </div>
-            <div class="bottom-nav-bar">
+            <div id="bottom-nav-bar">
+                <div id="search-bar-bottom">
+                    <form class="search-bar-bottom">
+                        <input type="text" id="searchTextBar" name="searchTextBar">
+                        <label for="searchTextBar">
+                            <button type="submit">
+                                <img alt="search icon" src="Images/search.png">
+                            </button>
+                        </label>
+                    </form>
+                </div>
                 <ul>
                     <li>
                         <a href="#">
-                            Custom Fish Tanks
+                            Custom Tanks
                         </a>
                     </li>
                     <li>
@@ -67,28 +83,102 @@
         </nav>
     </header>
     <main>
-        <!-- Adding Feature Page-->
+        <div id="welcome-splash">
+            <h2>Welcome to</h2>
+            <h1>Neptune's Nook!</h1>
+            <h4>Dive into Neptune's Nook: Where Every Tank Tells a Tail!</h4>
+            <a href="#trending-products-div">Start Here</a>
+        </div>
+        <div id="trending-products-div">
+            <h1>Trending Products</h1>
+            <div id="trending-products-container-div">
+                <div class="product-div">
+                    <img alt="Product 1" src="Images/product1.png">
+                    <p>
+                        <strong>
+                            Koller Products 3 Gallon Tropical 360 View Aquarium Starter Kit
+                        </strong>
+                    </p>
+                    <p>$130.00</p>
+                    <a href="#"><strong>View</strong></a>
+                </div>
 
-        
+                <div class="product-div">
+                    <img alt="Product 2" src="Images/product2.png">
+                    <p>
+                        <strong>
+                            Aqua Culture Premium 1-Gallon Fish Bowl Starter Kit
+                        </strong>
+                    </p>
+                    <p>$12.00</p>
+                    <a href="#"><strong>View</strong></a>
+                </div>
+
+                <div class="product-div">
+                    <img alt="Product 3" src="Images/product3.png">
+                    <p>
+                        <strong>
+                            GloFish Aquarium Gravel, Pink/Green/Blue, 5-lb
+                        </strong>
+                    </p>
+                    <p>$10.00</p>
+                    <a href="#"><strong>View</strong></a>
+                </div>
+
+                <div class="product-div">
+                    <img alt="Product 4" src="Images/product4.png">
+                    <p>
+                        <strong>
+                            Tetra LED Aquarium Kit - 1.5 Gal
+                        </strong>
+                    </p>
+                    <p>$35.00</p>
+                    <a href="#"><strong>View</strong></a>
+                </div>
+
+                <div class="product-div">
+                    <img alt="Product 5" src="Images/product5.png">
+                    <p>
+                        <strong>
+                            Imagitarium 5.2 Gallon Freshwater Aquarium
+                        </strong>
+                    </p>
+                    <p>$40.00</p>
+                    <a href="#"><strong>View</strong></a>
+                </div>
+
+                <div class="product-div">
+                    <img alt="Product 6" src="Images/product6.png">
+                    <p>
+                        <strong>
+                            Fluval - Mini Master Test Kit
+                        </strong>
+                    </p>
+                    <p>$45.00</p>
+                    <a href="#"><strong>View</strong></a>
+                </div>
+            </div>
+        </div>
     </main>
     <footer>
         <div class="footer-div">
             <ul class="footer-ul-left">
-                <li><Strong>Categories</Strong></li>
+                <li class="ul-li-heading">
+                    <h2>Categories</h2>
+                </li>
                 <li><a href="#">Fish Tanks</a></li>
                 <li><a href="#">Fish Tank Supplies</a></li>
                 <li><a href="#">Tank decor</a></li>
-    
             </ul>
             <ul class="footer-ul-right">
-                <li><Strong>Services</Strong></li>
+                <li class="ul-li-heading">
+                    <h2>Services</h2>
+                </li>
                 <li><a href="#">Delivery</a></li>
                 <li><a href="#">Tank Installation</a></li>
                 <li><a href="#">Contact</a></li>
-    
             </ul>
         </div>
-        
     </footer>
 </body>
 
