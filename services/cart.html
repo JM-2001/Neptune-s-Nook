@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+    <link rel="icon" type="icon/neptune-nook-icon" href="../images/logo-transparent.png">
+    <script src="../js/Script.js" defer></script>
+    <title>Neptune's Nook Splash Page</title>
+</head>
+
+<body>
+    <header>
+        <nav class="nav-bar">
+            <div class="top-nav-bar">
+                <div class="top-nav-bar-left">
+                    <a href="../index.html">
+                        <img alt="Neptune's Nook Logo" src="../images/logo-transparent.png">
+                    </a>
+                </div>
+                <div class="top-nav-bar-right">
+                    <div class="search-bar">
+                        <form class="search-bar">
+                            <input type="text" id="searchTextBar" name="searchTextBar">
+                            <label for="searchTextBar">
+                                <button type="submit">
+                                    <img alt="search icon" src="../images/search.png">
+                                </button>
+                            </label>
+                        </form>
+                    </div>
+                    <div class="top-nav-bar-right-div">
+                        <a href="cart.html">
+                            <img alt="Neptune's Nook Shopping Cart Image" src="../images/shopping-cart.png">
+                        </a>
+                    </div>
+                    <div class="top-nav-bar-right-div">
+                        <a href="#">
+                            <img alt="Neptune's Nook Account Image" src="../images/user.png">
+                        </a>
+                    </div>
+                    <div id="top-nav-bar-right-ham-div">
+                        <button type="button" onclick="displayBottomNav()">
+                            <img alt="hamburger button" src="../images/menu.png" id="top-nav-bar-right-ham-img">
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div id="bottom-nav-bar">
+                <div id="search-bar-bottom-div">
+                    <form class="search-bar-bottom">
+                        <input type="text" id="searchTextBar" name="searchTextBar">
+                        <label for="searchTextBar">
+                            <button type="submit">
+                                <img alt="search icon" src="../images/search.png">
+                            </button>
+                        </label>
+                    </form>
+                </div>
+                <ul>
+                    <li>
+                        <a href="../product-pages/products.html">
+                            Fish Tanks
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Tank Supplies
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Tank Decor
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Fish
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="shopping-cart-container">
+            <div class="shopping-cart-heading">
+                <h2>Items</h2>
+                <h2>Price</h2>
+            </div>
+
+            <div class="shopping-cart-item-div">
+                <div class="shopping-cart-item-left">
+                    <img class="shopping-cart-item-img" alt="Imagitarium 5.2 Gallon Freshwater Aquarium"
+                        src="../images/product5.png">
+                </div>
+                <div class="shopping-cart-item-right">
+                    <div class="shopping-cart-item-info">
+                        <p class="shopping-cart-item-info-name">
+                            Imagitarium 5.2 Gallon Freshwater Aquarium
+                        </p>
+                        <p class="shopping-cart-item-info-price">
+                            $40.00
+                        </p>
+                    </div>
+                    <div class="shopping-cart-item-right-btns">
+                        <div class="shopping-cart-item-quantity-div">
+                            <label for="shopping-cart-item-quantity-input">Qty:</label>
+                            <input type="number" id="shopping-cart-item-quantity-input" min="1" value=1 disabled>
+                        </div>
+
+                        <button type="button" class="shopping-cart-item-quantity-btn">Update Qty Price</button>
+                        <button type="button" class="shopping-cart-item-remove-btn">Delete Item</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shopping-cart-item-div">
+                <div class="shopping-cart-item-left">
+                    <img class="shopping-cart-item-img" alt="Aqua Culture Premium 1-Gallon Fish Bowl Starter Kit"
+                        src="../images/product2.png">
+                </div>
+                <div class="shopping-cart-item-right">
+                    <div class="shopping-cart-item-info">
+                        <p class="shopping-cart-item-info-name">
+                            Aqua Culture Premium 1-Gallon Fish Bowl Starter Kit
+                        </p>
+                        <p class="shopping-cart-item-info-price">
+                            $24.00
+                        </p>
+                    </div>
+                    <div class="shopping-cart-item-right-btns">
+                        <div class="shopping-cart-item-quantity-div">
+                            <label for="shopping-cart-item-quantity-input">Qty:</label>
+                            <input type="number" id="shopping-cart-item-quantity-input" min="1" value=2 disabled>
+                        </div>
+
+                        <button type="button" class="shopping-cart-item-quantity-btn">Update Qty Price</button>
+                        <button type="button" class="shopping-cart-item-remove-btn">Delete Item</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shopping-cart-item-div">
+                <div class="shopping-cart-item-left">
+                    <img class="shopping-cart-item-img" alt="GloFish Aquarium Gravel, Pink/Green/Blue, 5-lb"
+                        src="../images/product3.png">
+                </div>
+                <div class="shopping-cart-item-right">
+                    <div class="shopping-cart-item-info">
+                        <p class="shopping-cart-item-info-name">
+                            GloFish Aquarium Gravel, Pink/Green/Blue, 5-lb
+                        </p>
+                        <p class="shopping-cart-item-info-price">
+                            $10.00
+                        </p>
+                    </div>
+                    <div class="shopping-cart-item-right-btns">
+                        <div class="shopping-cart-item-quantity-div">
+                            <label for="shopping-cart-item-quantity-input">Qty:</label>
+                            <input type="number" id="shopping-cart-item-quantity-input" min="1" value=1 disabled>
+                        </div>
+
+                        <button type="button" class="shopping-cart-item-quantity-btn">Update Qty Price</button>
+                        <button type="button" class="shopping-cart-item-remove-btn">Delete Item</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shopping-cart-item-div">
+                <div class="shopping-cart-item-left">
+                    <img class="shopping-cart-item-img" alt="Fluval - Mini Master Test Kit"
+                        src="../images/product6.png">
+                </div>
+                <div class="shopping-cart-item-right">
+                    <div class="shopping-cart-item-info">
+                        <p class="shopping-cart-item-info-name">
+                            Fluval - Mini Master Test Kit
+                        </p>
+                        <p class="shopping-cart-item-info-price">
+                            $45.00
+                        </p>
+                    </div>
+                    <div class="shopping-cart-item-right-btns">
+                        <div class="shopping-cart-item-quantity-div">
+                            <label for="shopping-cart-item-quantity-input">Qty:</label>
+                            <input type="number" id="shopping-cart-item-quantity-input" min="1" value=1 disabled>
+                        </div>
+
+                        <button type="button" class="shopping-cart-item-quantity-btn">Update Qty Price</button>
+                        <button type="button" class="shopping-cart-item-remove-btn">Delete Item</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shopping-cart-bottom-div">
+                <div class="shopping-cart-zipcode-div">
+                    <label for="shopping-cart-zipcode">Shipping zipcode:</label>
+                    <input type="number" id="shopping-cart-zipcode" min="1" value=27403>
+                </div>
+                <button type="button" id="shopping-cart-zipcode-btn">Update zipcode</button>
+            </div>
+
+            <div class="shopping-cart-bottom-two-div">
+                <h2>Subtotal:</h2>
+                <h2 id="shopping-cart-subtotal">$119.00</h2>
+            </div>
+
+            <div class="shopping-cart-bottom-two-div">
+                <h2>Taxes (6.75%):</h2>
+                <h2 id="shopping-cart-tax">$8.03</h2>
+            </div>
+
+            <div class="shopping-cart-bottom-two-div">
+                <h2>Delivery: (Free for order over $30+, $10 delivery for orders under $30)</h2>
+                <h2 id="shopping-cart-delivery">FREE</h2>
+            </div>
+
+            <div class="shopping-cart-bottom-two-div">
+                <h2>Grand Total:</h2>
+                <h2 id="shopping-cart-grandtotal">$127.03</h2>
+            </div>
+
+            <div class="shopping-cart-bottom-two-btn-div">
+                <button type="button" id="shopping-cart-checkout-btn">Checkout</button>
+            </div>
+
+        </div>
+
+
+    </main>
+    <footer>
+        <div class="footer-div">
+            <ul class="footer-ul-left">
+                <li class="ul-li-heading">
+                    <h2>Categories</h2>
+                </li>
+                <li><a href="../product-pages/products.html">Fish Tanks</a></li>
+                <li><a href="#">Fish Tank Supplies</a></li>
+                <li><a href="#">Tank decor</a></li>
+            </ul>
+            <ul class="footer-ul-right">
+                <li class="ul-li-heading">
+                    <h2>Services</h2>
+                </li>
+                <li><a href="#">Delivery</a></li>
+                <li><a href="#">Tank Installation</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>
