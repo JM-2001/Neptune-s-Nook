@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+    <link rel="icon" type="icon/neptune-nook-icon" href="../images/logo-transparent.png">
+    <script src="../js/Script.js" defer></script>
+    <title>Neptune's Nook Splash Page</title>
+</head>
+
+<body>
+    <header>
+        <nav class="nav-bar">
+            <div class="top-nav-bar">
+                <div class="top-nav-bar-left">
+                    <a href="../index.html">
+                        <img alt="Neptune's Nook Logo" src="../images/logo-transparent.png">
+                    </a>
+                </div>
+                <div class="top-nav-bar-right">
+                    <div class="search-bar">
+                        <form class="search-bar">
+                            <input type="text" id="searchTextBar" name="searchTextBar">
+                            <label for="searchTextBar">
+                                <button type="submit">
+                                    <img alt="search icon" src="../images/search.png">
+                                </button>
+                            </label>
+                        </form>
+                    </div>
+                    <div class="top-nav-bar-right-div">
+                        <a href="../services/cart.html">
+                            <img alt="Neptune's Nook Shopping Cart Image" src="../images/shopping-cart.png">
+                        </a>
+                    </div>
+                    <div class="top-nav-bar-right-div">
+                        <a href="#">
+                            <img alt="Neptune's Nook Account Image" src="../images/user.png">
+                        </a>
+                    </div>
+                    <div id="top-nav-bar-right-ham-div">
+                        <button type="button" onclick="displayBottomNav()">
+                            <img alt="hamburger button" src="../images/menu.png" id="top-nav-bar-right-ham-img">
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div id="bottom-nav-bar">
+                <div id="search-bar-bottom-div">
+                    <form class="search-bar-bottom">
+                        <input type="text" id="searchTextBar" name="searchTextBar">
+                        <label for="searchTextBar">
+                            <button type="submit">
+                                <img alt="search icon" src="../images/search.png">
+                            </button>
+                        </label>
+                    </form>
+                </div>
+                <ul>
+                    <li>
+                        <a href="products.html">
+                            Fish Tanks
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Tank Supplies
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Tank Decor
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Fish
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="products-container-div">
+            <aside class="products-filter-aside">
+                <h1>Filters</h1>
+                <form class="products-filter-form">
+                    <div class="label-div">
+                        <h4>Tank Gallons</h4>
+                        <fieldset>
+                            <div>
+                                <input type="radio" id="tank-ten-gallons" name="tank-gallons" value="tank-ten-gallons">
+                                <label for="tank-ten-gallons">Up to 10 gallons</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="tank-eleven-gallons" name="tank-gallons"
+                                    value="tank-eleven-gallons">
+                                <label for="tank-eleven-gallons">Between 11 gallons - 19 gallons</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="tank-twenty-gallons" name="tank-gallons"
+                                    value="tank-twenty-gallons">
+                                <label for="tank-twenty-gallons">Between 20 gallons - 29 gallons</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="tank-fourty-gallons" name="tank-gallons"
+                                    value="tank-fourty-gallons">
+                                <label for="tank-fourty-gallons">Between 30 gallons - 49 gallons</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="tank-fifthy-gallons" name="tank-gallons"
+                                    value="tank-fifthy-gallons">
+                                <label for="tank-fifthy-gallons">From 50 and greater</label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="label-div">
+                        <h4>Prices</h4>
+                        <fieldset>
+                            <div>
+                                <input type="radio" id="tank-price-ten" name="tank-prices" value="tank-price-ten">
+                                <label for="tank-price-ten">Less than $19</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="tank-price-fourty" name="tank-prices" value="tank-price-fourty">
+                                <label for="tank-price-fourty">Between $20 - $49</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="tank-price-fifthy" name="tank-prices" value="tank-price-fifthy">
+                                <label for="tank-price-fifthy">Between $50 - $99</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="tank-price-hundred" name="tank-prices"
+                                    value="tank-price-hundred">
+                                <label for="tank-price-hundred">More than $100</label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="label-div">
+                        <h4>Tank Colors</h4>
+                        <fieldset>
+                            <div>
+                                <input type="radio" id="tank-red" name="tank-color" value="tank-red">
+                                <label for="tank-red">Red</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="tank-blue" name="tank-color" value="tank-blue">
+                                <label for="tank-blue">Blue</label>
+                            </div>
+
+                        </fieldset>
+                    </div>
+
+                    <div class="label-div">
+                        <h4>Product Average Rating</h4>
+                        <fieldset>
+                            <div>
+                                <input type="radio" id="tank-rating-five" name="tank-ratings" value="tank-rating-five">
+                                <label for="tank-rating-five">Between 4 - 5</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="tank-rating-four" name="tank-ratings" value="tank-rating-four">
+                                <label for="tank-rating-four">Between 3 - 4</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="tank-rating-three" name="tank-ratings"
+                                    value="tank-rating-three">
+                                <label for="tank-rating-three">Between 2 - 3</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="tank-rating-two" name="tank-ratings" value="tank-rating-two">
+                                <label for="tank-rating-two">Between 0 - 2</label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </form>
+            </aside>
+
+            <section class="products-listing-sections">
+                <h1>
+                    Fish Tanks
+                </h1>
+
+
+                <div class="products-row-div">
+                    <div class="product-div">
+                        <img alt="Product 1" src="../images/product1.png">
+                        <p class="product-div-name">
+                            <strong>
+                                Koller Products 3 Gallon Tropical 360 View Aquarium Starter Kit
+                            </strong>
+                        </p>
+                        <p class="product-div-price">$130.00</p>
+                        <a href="details.html"><strong>View</strong></a>
+                    </div>
+
+                    <div class="product-div">
+                        <img alt="Product 2" src="../images/product2.png">
+                        <p class="product-div-name">
+                            <strong>
+                                Aqua Culture Premium 1-Gallon Fish Bowl Starter Kit
+                            </strong>
+                        </p>
+                        <p class="product-div-price">$12.00</p>
+                        <a href="details.html"><strong>View</strong></a>
+                    </div>
+
+                    <div class="product-div">
+                        <img alt="Product 4" src="../images/product4.png">
+                        <p class="product-div-name">
+                            <strong>
+                                Tetra LED Aquarium Kit - 1.5 Gal
+                            </strong>
+                        </p>
+                        <p class="product-div-price">$35.00</p>
+                        <a href="details.html"><strong>View</strong></a>
+                    </div>
+
+                    <div class="product-div">
+                        <img alt="Product 5" src="../images/product5.png">
+                        <p class="product-div-name">
+                            <strong>
+                                Imagitarium 5.2 Gallon Freshwater Aquarium
+                            </strong>
+                        </p>
+                        <p class="product-div-price">$40.00</p>
+                        <a href="details.html"><strong>View</strong></a>
+                    </div>
+
+                </div> <!-- End products-row-div. This can be copied to make another row -->
+
+
+
+            </section>
+        </div>
+
+
+    </main>
+    <footer>
+        <div class="footer-div">
+            <ul class="footer-ul-left">
+                <li class="ul-li-heading">
+                    <h2>Categories</h2>
+                </li>
+                <li><a href="products.html">Fish Tanks</a></li>
+                <li><a href="#">Fish Tank Supplies</a></li>
+                <li><a href="#">Tank decor</a></li>
+            </ul>
+            <ul class="footer-ul-right">
+                <li class="ul-li-heading">
+                    <h2>Services</h2>
+                </li>
+                <li><a href="#">Delivery</a></li>
+                <li><a href="#">Tank Installation</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>
