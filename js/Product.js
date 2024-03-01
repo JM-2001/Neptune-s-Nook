@@ -1,8 +1,9 @@
 class Product {
-    constructor(productName, productCategory, productPrice, productDesc) {
+    constructor(productName, productDesc, productCategories, productImagePath, productPrice) {
         this.productName = productName;
-        this.productCategory = productCategory;
-        this.productPrice = productPrice;
         this.productDesc = productDesc;
+        this.productCategories = productCategories;
+        this.productImagePath = productImagePath;
+        this.productPrice = productPrice;
     }
 }

@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="../styles/admin.css">
     <link rel="icon" type="icon/neptune-nook-icon" href="../images/logo-transparent.png">
     <script src="../js/Script.js" defer></script>
-    <title>Neptune's Nook Details Page</title>
+    <title>Neptune's Nook Bulk Upload</title>
 </head>
 
 <body>
@@ -63,7 +63,7 @@
                 </div>
                 <ul>
                     <li>
-                        <a href="products.html">
+                        <a href="../product-pages/products.html">
                             Fish Tanks
                         </a>
                     </li>
@@ -84,95 +84,43 @@
                     </li>
                 </ul>
             </div>
+            <div id="bottom-nav-bar-admin">
+                <ul>
+                    <li>
+                        <a href="bulk-upload.html">
+                            Bulk Upload Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product-edit.html">
+                            Edit Product
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
     <main>
 
-        <div class="products-details-container">
-            <aside class="products-details-left-div">
-                <img class="products-details-img" alt="Product 5" src="../images/product5.png">
-            </aside>
-
-            <div class="products-details-right-div">
-                <h1>
-                    Imagitarium 5.2 Gallon Freshwater Aquarium
-                </h1>
-                <div class="products-details-ratings-div">
-                    <div class="products-details-stars">
-                        <ul>
-                            <li>
-                                &starf;
-                            </li>
-                            <li>
-                                &starf;
-                            </li>
-                            <li>
-                                &starf;
-                            </li>
-                            <li>
-                                &starf;
-                            </li>
-                            <li>
-                                &star;
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="products-details-ratings">
-                        <a href="#">300 Ratings</a>
-                    </div>
-                </div>
-
-                <div class="products-details-pricing-div">
-                    <p class="products-details-pricing">
-                        <strong>$40.00</strong>
-                    </p>
-                    <p>Best Price!</p>
-                </div>
-
-                <div class="products-details-desc">
-                    <h3>Description</h3>
-                    <p>
-                        Introducing the Imagitarium Freshwater Aquarium, a sleek desktop fish tank crafted from
-                        shatter-proof acrylic. This aquarium
-                        features versatile day/night LED lighting in both blue and white hues for optimal viewing. With
-                        internal filtration built in,
-                        maintaining a healthy environment for your aquatic friends is effortless. The convenient lid
-                        design allows for easy access during
-                        feeding times. Plus, it comes equipped with a C filter cartridge and is compatible with
-                        Imagitarium Replacement Small C Filter
-                        Cartridge Pads, ensuring long-term convenience and functionality.
-                    </p>
-                </div>
-
-                <div class="products-details-interesting">
-                    <h3>Interesting Facts</h3>
-                    <ul>
-                        <li>Shatter-proof acrylic construction</li>
-                        <li>Versatile day/night LED lighting</li>
-                        <li>Internal filtration system</li>
-                    </ul>
-                </div>
-
-                <div class="products-details-shipping-div">
-                    <div class="products-details-shipping-zip">
-                        <img src="../images/shipping-icon.png" alt="shipping icon">
-                        <label for="shipping-zipcode">Ship to zipcode: </label>
-                        <input type="number" id="shipping-zipcode" min="0">
-                    </div>
-                    <p>Free shipping on orders of $35+</p>
-                </div>
-
-                <form class="products-details-cart-div">
-                    <div class="products-details-input-div">
-                        <label for="quantity-input">Qty:</label>
-                        <input type="number" id="quantity-input" min="1">
-                    </div>
-                    <button type="submit" id="add-cart-btn">Add To Cart</button>
-                </form>
-
-
+        <section id="bu-instructions-section">
+            <h1>
+                Bulk Upload Instructions
+            </h1>
+            <figure>
+                <img src="../images/example-json.png" alt="A image of a json file">
+                <figcaption>A json file</figcaption>
+            </figure>
+            <ol>
+                <li></li>
+            </ol>
+        </section>
+        <form id="bulk-upload-form">
+            <div class="form-label-div" id="bulk-upload-form-div">
+                <label for="json-file-input">Select a file:</label>
+                <input type="file" id="json-file-input" accept=".json">
             </div>
-        </div>
+            <button type="submit" id="bulk-upload-form-btn">Upload</button>
+        </form>
 
     </main>
     <footer>
@@ -181,7 +129,7 @@
                 <li class="ul-li-heading">
                     <h2>Categories</h2>
                 </li>
-                <li><a href="product-pages/products.html">Fish Tanks</a></li>
+                <li><a href="../product-pages/products.html">Fish Tanks</a></li>
                 <li><a href="#">Fish Tank Supplies</a></li>
                 <li><a href="#">Tank decor</a></li>
             </ul>
