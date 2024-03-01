@@ -56,6 +56,10 @@ html {
     margin: 0px 20px;
 }
 
+#searchTextBar-label {
+    display: none;
+}
+
 .search-bar input[type=text] {
     padding: 10px;
     border: 5px solid #2a83ff;
@@ -767,6 +771,10 @@ input#shopping-cart-zipcode::-webkit-inner-spin-button {
         margin: 0px 20px;
     }
 
+    #searchTextBar-label-2 {
+        display: none;
+    }
+
     .search-bar-bottom input[type=text] {
         padding: 10px;
         border: 5px solid #2a83ff;
@@ -806,6 +814,10 @@ input#shopping-cart-zipcode::-webkit-inner-spin-button {
     #bottom-nav-bar ul li,
     #bottom-nav-bar ul li a {
         height: max-content;
+    }
+
+    #footer-copyright {
+        display: none;
     }
 
     /* index html */

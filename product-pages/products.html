@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
     <link rel="icon" type="icon/neptune-nook-icon" href="../images/logo-transparent.png">
     <script src="../js/Script.js" defer></script>
-    <title>Neptune's Nook Splash Page</title>
+    <title>Neptune's Nook Products Page</title>
 </head>
 
 <body>
@@ -22,9 +22,10 @@
                 <div class="top-nav-bar-right">
                     <div class="search-bar">
                         <form class="search-bar">
+                            <label for="searchTextBar" id="searchTextBar-label">Empty</label>
                             <input type="text" id="searchTextBar" name="searchTextBar">
-                            <label for="searchTextBar">
-                                <button type="submit">
+                            <label for="search-bar-btn" id="search-bar-btn-label">
+                                <button type="submit" id="search-bar-btn">
                                     <img alt="search icon" src="../images/search.png">
                                 </button>
                             </label>
@@ -51,9 +52,10 @@
             <div id="bottom-nav-bar">
                 <div id="search-bar-bottom-div">
                     <form class="search-bar-bottom">
-                        <input type="text" id="searchTextBar" name="searchTextBar">
-                        <label for="searchTextBar">
-                            <button type="submit">
+                        <label for="searchTextBar-bottom" id="searchTextBar-label-2">Empty</label>
+                        <input type="text" id="searchTextBar-bottom" name="searchTextBar-bottom">
+                        <label for="search-bar-bottom-btn">
+                            <button type="submit" id="search-bar-bottom-btn">
                                 <img alt="search icon" src="../images/search.png">
                             </button>
                         </label>
@@ -307,7 +309,7 @@
                 <li><a href="#">Tank Installation</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
-            <ul class="footer-ul-right">
+            <ul class="footer-ul-right" id="footer-copyright">
                 <li class="ul-li-heading">
                     <h2>Neptune's Nook &copy;</h2>
                 </li>

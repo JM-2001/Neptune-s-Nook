@@ -1,0 +1,30 @@
+[
+    {
+        "productName": "Koller Products 3 Gallon Tropical 360 View Aquarium Starter Kit",
+        "productDesc": "NULL",
+        "productCategories": ["Fish Tanks", "Tank Supplies"],
+        "productImagePath": "images/koller_product_350_starter.png",
+        "productPrice": "$130.00"
+    },
+    {
+        "productName": "Tetra LED Aquarium Kit - 1.5 Gal",
+        "productDesc": "NULL",
+        "productCategories": ["Fish Tanks", "Tank Supplies"],
+        "productImagePath": "images/tetra_led_aqua_kit.png",
+        "productPrice": "$35.00"
+    },
+    {
+        "productName": "Imagitarium 5.2 Gallon Freshwater Aquarium",
+        "productDesc": "Introducing the Imagitarium Freshwater Aquarium, a sleek desktop fish tank crafted from shatter-proof acrylic. This aquarium features versatile day/night LED lighting in both blue and white hues for optimal viewing. With internal filtration built in, maintaining a healthy environment for your aquatic friends is effortless. The convenient lid design allows for easy access during feeding times. Plus, it comes equipped with a C filter cartridge and is compatible with Imagitarium Replacement Small C Filter Cartridge Pads, ensuring long-term convenience and functionality",
+        "productCategories": ["Fish Tanks"],
+        "productImagePath": "images/imagitarium_5gal_aqua.png",
+        "productPrice": "$40.00"
+    },
+    {
+        "productName": "Fluval - Mini Master Test Kit",
+        "productDesc": "NULL",
+        "productCategories": ["Tank Supplies"],
+        "productImagePath": "NULL",
+        "productPrice": "$45.00"
+    }
+]

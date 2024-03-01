@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../styles/admin.css">
+    <link rel="icon" type="icon/neptune-nook-icon" href="../images/logo-transparent.png">
+    <script src="../js/Script.js" defer></script>
+    <title>Neptune's Nook Bulk Upload</title>
+</head>
+
+<body>
+    <header>
+        <nav class="nav-bar">
+            <div class="top-nav-bar">
+                <div class="top-nav-bar-left">
+                    <a href="../index.html">
+                        <img alt="Neptune's Nook Logo" src="../images/logo-transparent.png">
+                    </a>
+                </div>
+                <div class="top-nav-bar-right">
+                    <div class="search-bar">
+                        <form class="search-bar">
+                            <label for="searchTextBar" id="searchTextBar-label">Empty</label>
+                            <input type="text" id="searchTextBar" name="searchTextBar">
+                            <label for="search-bar-btn" id="search-bar-btn-label">
+                                <button type="submit" id="search-bar-btn">
+                                    <img alt="search icon" src="../images/search.png">
+                                </button>
+                            </label>
+                        </form>
+                    </div>
+                    <div class="top-nav-bar-right-div">
+                        <a href="../services/cart.html">
+                            <img alt="Neptune's Nook Shopping Cart Image" src="../images/shopping-cart.png">
+                        </a>
+                    </div>
+                    <div class="top-nav-bar-right-div">
+                        <a href="#">
+                            <img alt="Neptune's Nook Account Image" src="../images/user.png">
+                        </a>
+                    </div>
+                    <div id="top-nav-bar-right-ham-div">
+                        <button type="button" onclick="displayBottomNav()">
+                            <img alt="hamburger button" src="../images/menu.png" id="top-nav-bar-right-ham-img">
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div id="bottom-nav-bar">
+                <div id="search-bar-bottom-div">
+                    <form class="search-bar-bottom">
+                        <label for="searchTextBar-bottom" id="searchTextBar-label-2">Empty</label>
+                        <input type="text" id="searchTextBar-bottom" name="searchTextBar-bottom">
+                        <label for="search-bar-bottom-btn">
+                            <button type="submit" id="search-bar-bottom-btn">
+                                <img alt="search icon" src="../images/search.png">
+                            </button>
+                        </label>
+                    </form>
+                </div>
+                <ul>
+                    <li>
+                        <a href="../product-pages/products.html">
+                            Fish Tanks
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Tank Supplies
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Tank Decor
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Fish
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="bottom-nav-bar-admin">
+                <ul>
+                    <li>
+                        <a href="bulk-upload.html">
+                            Bulk Upload Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product-edit.html">
+                            Edit Product
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+
+        <div class="filtering-div">
+            <h3>Filtering:</h3>
+            <form class="search-bar-filter">
+                <label for="search-bar-filter-input" id="search-bar-filter-label">Empty</label>
+                <input type="text" id="search-bar-filter-input" name="search-bar-filter-input">
+                <label for="search-bar-filter-btn" id="search-bar-filter-btn-label">
+                    <button type="submit" id="search-bar-filter-btn">
+                        <img alt="search icon" src="../images/search.png">
+                    </button>
+                </label>
+            </form>
+            <h3>Categories:</h3>
+            <form class="form-filter">
+                <fieldset>
+                    <div>
+                        <input type="radio" id="option-fish-tanks" name="option-fish-tanks" value="option-fish-tanks">
+                        <label for="option-fish-tanks">Fish Tanks</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="option-tank-supplies" name="option-tank-supplies"
+                            value="option-tank-supplies">
+                        <label for="option-tank-supplies">Tank Supplies</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="option-tank-decor" name="option-tank-decor" value="option-tank-decor">
+                        <label for="option-tank-decor">Tank Decor</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="option-fish" name="option-fish" value="option-fish">
+                        <label for="option-fish">Fish</label>
+                    </div>
+                </fieldset>
+                <button type="submit" id="filtering-btn">Filter</button>
+            </form>
+        </div>
+
+        <div class="products-listing-container">
+            <div id="products-listing-container-heading">
+                <h3>Products:</h3>
+                <button type="button" id="create-product-btn" onclick="displayCreateProduct()">Create</button>
+            </div>
+
+            <form id="product-listing-add" class="product-listing-add-hidden">
+                <div class="listing-div">
+                    <label for="product-id-add">Product ID:</label>
+                    <input type="number" id="product-id-add" name="product-id-add" value="">
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-name-add">Product Name:</label>
+                    <input type="text" id="product-name-add" name="product-name-add"
+                        value="Null">
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-desc-add">Product Description:</label>
+                    <textarea id="product-desc-add" name="product-desc-add">
+
+                    </textarea>
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-cate-add">Product Categories:</label>
+                    <input type="text" id="product-cate-add" name="product-cate-add" value="NULL" >
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-img-path-add">Product Image Path:</label>
+                    <input type="text" id="product-img-path-add" name="product-img-path-add"
+                        value="NULL">
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-price-add">Product Price:</label>
+                    <input type="text" id="product-price-add" name="product-price-add" value="$0.00">
+                </div>
+
+                <div class="listing-btn-div">
+                    <label>Actions:</label>
+                    <button type="button" class="save-btn">Save</button>
+                    <button type="button" class="cancel-btn" onclick="hideCreateProduct()">Cancel</button>
+                </div>
+            </form>
+
+            <form class="product-listing" id="product-listing-1">
+                <div class="listing-div">
+                    <label for="product-id">Product ID:</label>
+                    <input type="number" id="product-id" name="product-id" value="1" readonly>
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-name">Product Name:</label>
+                    <input type="text" id="product-name" name="product-name"
+                        value="Koller Products 3 Gallon Tropical 360 View Aquarium Starter Kit" readonly>
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-desc">Product Description:</label>
+                    <textarea id="product-desc" name="product-desc" readonly>
+
+                    </textarea>
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-cate">Product Categories:</label>
+                    <input type="text" id="product-cate" name="product-cate" value="Fish Tanks, Tank Supplies" readonly>
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-img-path">Product Image Path:</label>
+                    <input type="text" id="product-img-path" name="product-img-path"
+                        value="images/koller_product_350_starter.png" readonly>
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-price">Product Price:</label>
+                    <input type="text" id="product-price" name="product-price" value="$130.00" readonly>
+                </div>
+
+                <div class="listing-btn-div">
+                    <label>Actions:</label>
+                    <button type="button" class="save-btn hidden">Save</button>
+                    <button type="button" class="edit-btn" onclick="makeProductEdit()">Edit</button>
+                </div>
+            </form>
+
+            <form class="product-listing">
+                <div class="listing-div">
+                    <label for="product-id2">Product ID:</label>
+                    <input type="number" id="product-id2" name="product-id2" value="2" readonly>
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-name2">Product Name:</label>
+                    <input type="text" id="product-name2" name="product-name2"
+                        value="Imagitarium 5.2 Gallon Freshwater Aquarium" readonly>
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-desc2">Product Description:</label>
+                    <textarea id="product-desc2" name="product-desc2" readonly>
+                        Introducing the Imagitarium Freshwater Aquarium, a sleek desktop fish tank crafted from shatter-proof acrylic. 
+                        This aquarium features versatile day/night LED lighting in both blue and white hues for optimal viewing. With internal 
+                        filtration built in, maintaining a healthy environment for your aquatic friends is effortless. The convenient lid design
+                         allows for easy access during feeding times. Plus, it comes equipped with a C filter cartridge and is compatible with 
+                         Imagitarium Replacement Small C Filter Cartridge Pads, ensuring long-term convenience and functionality.
+                    </textarea>
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-cate2">Product Categories:</label>
+                    <input type="text" id="product-cate2" name="product-cate2" value="Fish Tanks" readonly>
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-img-path2">Product Image Path:</label>
+                    <input type="text" id="product-img-path2" name="product-img-path2"
+                        value="images/imagitarium_5gal_aqua.png" readonly>
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-price2">Product Price:</label>
+                    <input type="text" id="product-price2" name="product-price2" value="$40.00" readonly>
+                </div>
+
+                <div class="listing-btn-div">
+                    <label>Actions:</label>
+                    <button type="button" class="save-btn hidden">Save</button>
+                    <button type="button" class="edit-btn">Edit</button>
+                </div>
+            </form>
+        </div>
+
+    </main>
+    <footer>
+        <div class="footer-div">
+            <ul class="footer-ul-left">
+                <li class="ul-li-heading">
+                    <h2>Categories</h2>
+                </li>
+                <li><a href="../product-pages/products.html">Fish Tanks</a></li>
+                <li><a href="#">Fish Tank Supplies</a></li>
+                <li><a href="#">Tank decor</a></li>
+            </ul>
+            <ul class="footer-ul-right">
+                <li class="ul-li-heading">
+                    <h2>Services</h2>
+                </li>
+                <li><a href="#">Delivery</a></li>
+                <li><a href="#">Tank Installation</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <ul class="footer-ul-right" id="footer-copyright">
+                <li class="ul-li-heading">
+                    <h2>Neptune's Nook &copy;</h2>
+                </li>
+                <li>All rights reserved.</li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>
