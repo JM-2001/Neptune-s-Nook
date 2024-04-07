@@ -1,0 +1,187 @@
+<%- include('../partials/head') %>
+<body>
+    <header>
+        <nav class="nav-bar">
+            <div class="top-nav-bar">
+                <div class="top-nav-bar-left">
+                    <a href="/">
+                        <img src="/images/logo-transparent.png" alt="Logo">
+                    </a>
+                </div>
+                <div class="top-nav-bar-right">
+                    <div class="search-bar">
+                        <form class="search-bar">
+                            <label for="searchTextBar" id="searchTextBar-label">Empty</label>
+                            <input type="text" id="searchTextBar" name="searchTextBar">
+                            <label for="search-bar-btn" id="search-bar-btn-label">
+                                <button type="submit" id="search-bar-btn">
+                                    <img alt="search icon" src="/images/search.png">
+                                </button>
+                            </label>
+                        </form>
+                    </div>
+                    <div class="top-nav-bar-right-div">
+                        <a href="/services/cart.html">
+                            <img alt="Neptune's Nook Shopping Cart Image" src="/images/shopping-cart.png">
+                        </a>
+                    </div>
+                    <div class="top-nav-bar-right-div">
+                        <a href="#">
+                            <img alt="Neptune's Nook Account Image" src="/images/user.png">
+                        </a>
+                    </div>
+                    <div id="top-nav-bar-right-ham-div">
+                        <button type="button" onclick="displayBottomNav()">
+                            <img alt="hamburger button" src="/images/menu.png" id="top-nav-bar-right-ham-img">
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div id="bottom-nav-bar">
+                <div id="search-bar-bottom-div">
+                    <form class="search-bar-bottom">
+                        <label for="searchTextBar-bottom" id="searchTextBar-label-2">Empty</label>
+                        <input type="text" id="searchTextBar-bottom" name="searchTextBar-bottom">
+                        <label for="search-bar-bottom-btn">
+                            <button type="submit" id="search-bar-bottom-btn">
+                                <img alt="search icon" src="/images/search.png">
+                            </button>
+                        </label>
+                    </form>
+                </div>
+                <ul>
+                    <li>
+                        <a href="/products/category/1">
+                            Fish Tanks
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/products/category/2">
+                            Tank Supplies
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/products/category/3">
+                            Tank Decor
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/products/category/4">
+                            Fish
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+
+        <div class="products-details-container">
+            <aside class="products-details-left-div">
+                <img class="products-details-img" alt="<%= product.product_name %>"src="<%= product.product_img_url %>">
+            </aside>
+
+            <div class="products-details-right-div">
+                <h1>
+                    <%= product.product_name %>
+                </h1>
+                <div class="products-details-ratings-div">
+                    <div class="products-details-stars">
+                        <ul>
+                            <li>
+                                &starf;
+                            </li>
+                            <li>
+                                &starf;
+                            </li>
+                            <li>
+                                &starf;
+                            </li>
+                            <li>
+                                &starf;
+                            </li>
+                            <li>
+                                &star;
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="products-details-ratings">
+                        <a href="#">300 Ratings</a>
+                    </div>
+                </div>
+
+                <div class="products-details-pricing-div">
+                    <p class="products-details-pricing">
+                        <strong>$<%= parseFloat(product.product_price).toFixed(2) %></strong>
+                    </p>
+                    <p>Best Price!</p>
+                </div>
+
+                <div class="products-details-desc">
+                    <h3>Description</h3>
+                    <p>
+                        <%= product.product_desc %>
+                    </p>
+                </div>
+
+                <div class="products-details-interesting">
+                    <h3>Interesting Facts</h3>
+                    <ul>
+                        <li>Shatter-proof acrylic construction</li>
+                        <li>Versatile day/night LED lighting</li>
+                        <li>Internal filtration system</li>
+                    </ul>
+                </div>
+
+                <div class="products-details-shipping-div">
+                    <div class="products-details-shipping-zip">
+                        <img src="/images/shipping-icon.png" alt="shipping icon">
+                        <label for="shipping-zipcode">Ship to zipcode: </label>
+                        <input type="number" id="shipping-zipcode" min="0">
+                    </div>
+                    <p>Free shipping on orders of $35+</p>
+                </div>
+
+                <form class="products-details-cart-div">
+                    <div class="products-details-input-div">
+                        <label for="quantity-input">Qty:</label>
+                        <input type="number" id="quantity-input" min="1">
+                    </div>
+                    <button type="submit" id="add-cart-btn">Add To Cart</button>
+                </form>
+
+
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <div class="footer-div">
+            <ul class="footer-ul-left">
+                <li class="ul-li-heading">
+                    <h2>Categories</h2>
+                </li>
+                <li><a href="/products/category/1">Fish Tanks</a></li>
+                <li><a href="/products/category/2">Fish Tank Supplies</a></li>
+                <li><a href="/products/category/3">Tank decor</a></li>
+            </ul>
+            <ul class="footer-ul-right">
+                <li class="ul-li-heading">
+                    <h2>Services</h2>
+                </li>
+                <li><a href="#">Delivery</a></li>
+                <li><a href="#">Tank Installation</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <ul class="footer-ul-right" id="footer-copyright">
+                <li class="ul-li-heading">
+                    <h2>Neptune's Nook &copy;</h2>
+                </li>
+                <li>All rights reserved.</li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>
