@@ -4,10 +4,10 @@ function displayBottomNav() {
 
     if (bottomNavBar.style.display == 'none') {
         bottomNavBar.style.display = 'block';
-        hamburgerIcon.src = '../images/menu-open.png'
+        hamburgerIcon.src = '/images/menu-open.png'
     } else {
         bottomNavBar.style.display = 'none';
-        hamburgerIcon.src = '../images/menu.png'
+        hamburgerIcon.src = '/images/menu.png'
     }
 }
 
