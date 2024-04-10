@@ -33,7 +33,6 @@ function getAllByCategory(req, res, next) {
   }
 }
 
-
 function getAllByFeatured(req, res, next) {
   let featuredProducts = model.getAllByFeatured();
   try {
