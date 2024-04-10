@@ -4,8 +4,17 @@ html {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 1em;
     margin: 0px;
+    /*
     height: 100%;
+    min-height: 100vh;
+    */
     width: 100%;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header */
@@ -153,7 +162,7 @@ html {
 /* Footer */
 footer {
     background-color: #559cff;
-    margin: 10px 0px 0px 0px;
+    margin: auto 0px 0px 0px; /* 10px 0px 0px 0px */
     padding: 15px;
 }
 
@@ -192,11 +201,13 @@ footer {
     margin: 10px 0px;
 }
 
-/* Index HTML Main CSS */
+/* Main */
 main {
     width: 100%;
     height: max-content;
 }
+
+/* Index HTML Main CSS */
 
 #welcome-splash {
     background-image: url(../images/fish_banner_x500_1_x500.jpg);
@@ -307,6 +318,7 @@ main {
     display: flex;
     justify-content: center;
     gap: 10px;
+    margin: 40px 0px;
 }
 
 .products-container-div h1 {
@@ -354,6 +366,7 @@ main {
     display: flex;
     justify-content: center;
     gap: 10px;
+    margin: 40px 0px;
 }
 
 .products-details-left-div {
@@ -514,7 +527,7 @@ input#shipping-zipcode::-webkit-inner-spin-button {
 .shopping-cart-container {
     width: 90%;
     padding: 0px 20px;
-    margin: 0px auto;
+    margin: 40px auto;
 }
 
 .shopping-cart-heading {
@@ -661,6 +674,90 @@ input#shopping-cart-zipcode::-webkit-inner-spin-button {
     display: flex;
     justify-content: flex-end;
 }
+
+/* Login and Register Main HTML CSS */
+#register-div, #login-div {
+    width: 70%;
+    padding: 20px;
+    margin: 40px auto;
+    border-radius: 30px;
+    border: solid 5px #2a83ff;
+}
+
+#register-div h1, #login-div h1 {
+    text-align: center;
+    margin: 5px 0px;
+}
+
+.form-div {
+    margin: 15px 0px;
+}
+
+.form-div label {
+    display: block;
+    font-size: 1.05em;
+}
+
+.multi-div {
+    text-align: center;
+    margin: 15px 0px 0px 0px;
+}
+
+.multi-div a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    display: block;
+    font-size: 1.05em;
+    margin: 5px 0px;
+}
+
+.multi-div a:hover {
+    color: #ffffff;
+}
+
+#first-name,
+#last-name,
+#email,
+#password,
+#confirm-password {
+    margin-top: 10px;
+    background-color: transparent;
+    border: 5px solid #2a83ff;
+    border-radius: 20px;
+    width: -webkit-fill-available;
+    height: 25px;
+    padding: 5px 10px;
+    font-size: 1.05em;
+}
+
+#first-name:focus,
+#last-name:focus,
+#email:focus,
+#password:focus,
+#confirm-password:focus {
+    outline: none;
+    border: 5px solid #61a3ff;
+}
+
+#register-btn, #login-btn {
+    background-color: #2a83ff;
+    border: none;
+    border-radius: 20px;
+    width: -webkit-fill-available;
+    height: 50px;
+    padding: 5px 10px;
+    margin: 5px 0px;
+    font-size: 1.05em;
+    outline: none;
+    color: #ffffff;
+}
+
+#register-btn:hover, #login-btn:hover {
+    background-color: #61a3ff;
+    outline: none;
+}
+
 
 /* Responsive for all pages */
 @media screen and (max-width: 730px) {
