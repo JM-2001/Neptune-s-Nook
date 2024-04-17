@@ -9,12 +9,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const model = require("../models/products.model");
+const userModel = require("../models/users.model");
 
 function getAll(req, res, next) {
   let products = model.getAll();
   try {
     res.json(model.getAll());
-    //res.render("menu", { Products: meals, title: 'All Meals' });
   } catch (err) {
     console.error("Error while getting products ", err.message);
     next(err);
@@ -22,22 +22,71 @@ function getAll(req, res, next) {
 }
 
 function getAllByCategory(req, res, next) {
+  let loggedIn = req.user ? true : false;
+  let user_type = null;
+  let user_id = null;
+  if (req.user) {
+    user_type = req.user.user_type;
+    user_id = req.user.user_id; 
+  }
+  //console.log('User Type:', user_type);
+  //console.log('User ID:', user_id);
+  
   let category = req.params.category;
+  let categoryName = model.getCategoryById(category);
   let products = model.getAllByCategory(category);
   try {
     //res.json(model.getAllByCategory(req.params.category));
-    res.render("product-pages/products", { products: products, title: category});
+    res.render("product-pages/products", { 
+      products: products, 
+      loggedIn: loggedIn,
+      user_type: user_type,
+      user_id: user_id,
+      title: categoryName.category_name 
+    });
   } catch (err) {
     console.error("Error while getting products ", err.message);
     next(err);
   }
 }
 
+/*
 function getAllByFeatured(req, res, next) {
   let featuredProducts = model.getAllByFeatured();
+  let loggedIn = req.user ? true : false;
+  let user_type = null;
+  if (req.user) {
+    user_type = req.user.user_type;
+  }
+  console.log('User Type:', user_type);
   try {
-    //res.json(model.getAllByFeatured());
-    res.render('index', { products: featuredProducts, title: "Neptune's Nook Splash Page" });
+    res.render('index', { products: featuredProducts, loggedIn: loggedIn, user_type: user_type, title: "Neptune's Nook Splash Page" });
+  } catch (err) {
+    console.error("Error while getting products ", err.message);
+    next(err);
+  }
+}
+*/
+
+function getAllByFeatured(req, res, next) {
+  let featuredProducts = model.getAllByFeatured();
+  let loggedIn = req.user ? true : false;
+  let user_type = null;
+  let user_id = null;
+  if (req.user) {
+    user_type = req.user.user_type;
+    user_id = req.user.user_id; 
+  }
+  //console.log('User Type:', user_type);
+  //console.log('User ID:', user_id);
+  try {
+    res.render('index', {
+      products: featuredProducts,
+      loggedIn: loggedIn,
+      user_type: user_type,
+      user_id: user_id, 
+      title: "Neptune's Nook Splash Page"
+    });
   } catch (err) {
     console.error("Error while getting products ", err.message);
     next(err);
@@ -45,11 +94,27 @@ function getAllByFeatured(req, res, next) {
 }
 
 function getOneById(req, res, next) {
+  let loggedIn = req.user ? true : false;
+  let user_type = null;
+  let user_id = null;
+  if (req.user) {
+    user_type = req.user.user_type;
+    user_id = req.user.user_id; 
+  }
+  //console.log('User Type:', user_type);
+  //console.log('User ID:', user_id);
+
   let id = req.params.id;
   try {
     let product = model.getOneById(id);
     //res.json(model.getOneById(req.params.id));
-    res.render("product-pages/details", { product: product, title: 'Product #' + id });
+    res.render("product-pages/details", 
+    { product: product, 
+      loggedIn: loggedIn,
+      user_type: user_type,
+      user_id: user_id, 
+      title: 'Product #' + id 
+    });
   } catch (err) {
     console.error("Error while getting products ", err.message);
     next(err);

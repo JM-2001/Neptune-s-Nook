@@ -66,3 +66,25 @@ function makeProductEdit() {
         editProductBoolean = true;
     }
 }
+
+const dropDownNav = document.getElementById('drop-down-nav-div');
+
+dropDownNav.addEventListener('click', function() {
+    const dropDownMenu = document.querySelector('.dropdown-div');
+
+    if (dropDownMenu.style.display == 'none') {
+        dropDownMenu.style.display = 'block';
+    } else {
+        dropDownMenu.style.display = 'none';
+    }
+});
+
+document.getElementById('register-form').addEventListener('submit', function(event) {
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+
+    if (password !== confirmPassword) {
+        event.preventDefault();
+        alert('Passwords do not match.');
+    }
+});

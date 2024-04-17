@@ -20,16 +20,29 @@
                             </label>
                         </form>
                     </div>
+
                     <div class="top-nav-bar-right-div">
-                        <a href="/services/cart.html">
+                        <a href="<%= loggedIn ? '/cart/getCart/' + user_id : '/auth/login' %>">
                             <img alt="Neptune's Nook Shopping Cart Image" src="/images/shopping-cart.png">
                         </a>
                     </div>
-                    <div class="top-nav-bar-right-div">
-                        <a href="#">
+                    <div class="top-nav-bar-right-div" id="drop-down-nav-div">
+                        <% if (!loggedIn) { %>
+                            <a href="/auth/login">
+                                <img alt="Neptune's Nook Account Image" src="/images/user.png">
+                            </a>
+                        <% } else { %>
                             <img alt="Neptune's Nook Account Image" src="/images/user.png">
-                        </a>
+                            <div class="dropdown-div">
+                                <% if (user_type === 'admin') { %>
+                                    <a href="#">Bulk Upload</a>
+                                    <a href="#">Product Edit</a>
+                                <% } %>
+                                <a href="/auth/logout">Logout</a>
+                            </div>
+                        <% } %>
                     </div>
+
                     <div id="top-nav-bar-right-ham-div">
                         <button type="button" onclick="displayBottomNav()">
                             <img alt="hamburger button" src="/images/menu.png" id="top-nav-bar-right-ham-img">
@@ -176,7 +189,7 @@
 
             <section class="products-listing-sections">
                 <h1>
-                    Fish Tanks
+                    <%= title %>
                 </h1>
 
                 <% for(let i = 0; i < products.length; i+=4) { %>
@@ -196,12 +209,8 @@
                     </div>
                 <% } %>
 
-                
-
-
             </section>
         </div>
-
 
     </main>
     <footer>
