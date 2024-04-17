@@ -1,11 +1,12 @@
-<%- include('./partials/head') %>
+<%- include('../partials/head') %>
+
 <body>
     <header>
-        <nav class="nav-bar nav-bar-indexp">
+        <nav class="nav-bar">
             <div class="top-nav-bar">
                 <div class="top-nav-bar-left">
                     <a href="/">
-                        <img alt="Neptune's Nook Logo" src="images/logo-transparent.png">
+                        <img src="/images/logo-transparent.png" alt="Logo">
                     </a>
                 </div>
                 <div class="top-nav-bar-right">
@@ -15,36 +16,26 @@
                             <input type="text" id="searchTextBar" name="searchTextBar">
                             <label for="search-bar-btn" id="search-bar-btn-label">
                                 <button type="submit" id="search-bar-btn">
-                                    <img alt="search icon" src="images/search.png">
+                                    <img alt="search icon" src="/images/search.png">
                                 </button>
                             </label>
                         </form>
                     </div>
                     <div class="top-nav-bar-right-div">
-                        <a href="<%= loggedIn ? '/cart/getCart/' + user_id : '/auth/login' %>">
-                            <img alt="Neptune's Nook Shopping Cart Image" src="images/shopping-cart.png">
+                        <a href="/auth/login">
+                            <img alt="Neptune's Nook Shopping Cart Image" src="/images/shopping-cart.png">
                         </a>
                     </div>
-                    <div class="top-nav-bar-right-div" id="drop-down-nav-div">
-                        <% if (!loggedIn) { %>
-                            <a href="/auth/login">
-                                <img alt="Neptune's Nook Account Image" src="../images/user.png">
-                            </a>
-                        <% } else { %>
-                            <img alt="Neptune's Nook Account Image" src="../images/user.png">
-                            <div class="dropdown-div">
-                                <% if (user_type === 'admin') { %>
-                                    <a href="#">Bulk Upload</a>
-                                    <a href="#">Product Edit</a>
-                                <% } %>
-                                <a href="/auth/logout">Logout</a>
-                            </div>
-                        <% } %>
+                    <div class="top-nav-bar-right-div">
+                        <a href="/auth/login">
+                            <img alt="Neptune's Nook Account Image" src="/images/user.png">
+                        </a>
                     </div>
                     <div id="top-nav-bar-right-ham-div">
                         <button type="button" onclick="displayBottomNav()">
-                            <img alt="hamburger button" src="images/menu.png" id="top-nav-bar-right-ham-img">
+                            <img alt="hamburger button" src="/images/menu.png" id="top-nav-bar-right-ham-img">
                         </button>
+
                     </div>
                 </div>
             </div>
@@ -55,7 +46,7 @@
                         <input type="text" id="searchTextBar-bottom" name="searchTextBar-bottom">
                         <label for="search-bar-bottom-btn">
                             <button type="submit" id="search-bar-bottom-btn">
-                                <img alt="search icon" src="images/search.png">
+                                <img alt="search icon" src="/images/search.png">
                             </button>
                         </label>
                     </form>
@@ -86,29 +77,32 @@
         </nav>
     </header>
     <main>
-        <div id="welcome-splash">
-            <h2>Welcome to</h2>
-            <h1>Neptune's Nook!</h1>
-            <h4>Dive into Neptune's Nook: Where Every Tank Tells a Tail!</h4>
-            <a href="#trending-products-div">Start Here</a>
+        <div class="<% if (!message) { %>hidden<% } else { %>message-div<% } %>">
+            <h1>Message: <% if (message) { %><%= message %><% } %></h1>
         </div>
-        <div id="trending-products-div">
-            <h1>Trending Products</h1>
-            <div id="trending-products-container-div">
-                <% products.forEach(function(product) { %>
-                    <div class="product-div">
-                      <img alt="<%= product.product_name %>" src="<%= product.product_img_url %>">
-                      <p class="product-div-name">
-                        <strong>
-                          <%= product.product_name %>
-                        </strong>
-                      </p>
-                      <p class="product-div-price">$<%= parseFloat(product.product_price).toFixed(2) %></p>
-                      <a href="/products/product/<%= product.product_id %>"><strong>View</strong></a>
-                    </div>
-                  <% }); %>
+
+        <div id="login-div">
+            <h1>Login</h1>
+            <form action="/auth/login" method="POST">
+                <div class="form-div">
+                    <label for="email"><strong>Email:</strong></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-div">
+                    <label for="password"><strong>Password:</strong></label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-div">
+                    <button type="submit" id="login-btn">Login</button>
+                </div>
+            </form>
+
+            <div class="multi-div">
+                <a href="#">Forgot password?</a>
+                <a href="/user/register">Don't have an account? Register</a>
             </div>
         </div>
+
     </main>
     <footer>
         <div class="footer-div">
@@ -116,9 +110,9 @@
                 <li class="ul-li-heading">
                     <h2>Categories</h2>
                 </li>
-                <li><a href="/products/category/1">Fish Tanks</a></li>
-                <li><a href="/products/category/2">Fish Tank Supplies</a></li>
-                <li><a href="/products/category/3">Tank decor</a></li>
+                <li><a href="product-pages/products.html">Fish Tanks</a></li>
+                <li><a href="#">Fish Tank Supplies</a></li>
+                <li><a href="#">Tank decor</a></li>
             </ul>
             <ul class="footer-ul-right">
                 <li class="ul-li-heading">

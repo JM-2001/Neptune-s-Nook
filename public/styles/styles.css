@@ -11,7 +11,7 @@ html {
     width: 100%;
 }
 
-body{
+body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -116,6 +116,30 @@ body{
     width: 30px;
 }
 
+.dropdown-div {
+    display: none;
+    position: absolute;
+    background-color: #2a83ff;
+    min-width: 175px;
+    right: 0px;
+    top: 70px;
+}
+
+.dropdown-div a {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+    color: #000000;
+    font-weight: bold;
+}
+
+.dropdown-div a:hover {
+    background-color: #4592fd;
+}
+
 #top-nav-bar-right-ham-div,
 .search-bar-bottom {
     display: none;
@@ -162,7 +186,8 @@ body{
 /* Footer */
 footer {
     background-color: #559cff;
-    margin: auto 0px 0px 0px; /* 10px 0px 0px 0px */
+    margin: auto 0px 0px 0px;
+    /* 10px 0px 0px 0px */
     padding: 15px;
 }
 
@@ -207,6 +232,9 @@ main {
     height: max-content;
 }
 
+.hidden {
+    display: none;
+}
 /* Index HTML Main CSS */
 
 #welcome-splash {
@@ -676,7 +704,9 @@ input#shopping-cart-zipcode::-webkit-inner-spin-button {
 }
 
 /* Login and Register Main HTML CSS */
-#register-div, #login-div {
+#register-div,
+#login-div,
+.message-div {
     width: 70%;
     padding: 20px;
     margin: 40px auto;
@@ -684,7 +714,13 @@ input#shopping-cart-zipcode::-webkit-inner-spin-button {
     border: solid 5px #2a83ff;
 }
 
-#register-div h1, #login-div h1 {
+.message-div {
+    border: solid 5px #ff3f2a;
+}
+
+#register-div h1,
+#login-div h1,
+.message-div h1 {
     text-align: center;
     margin: 5px 0px;
 }
@@ -740,7 +776,8 @@ input#shopping-cart-zipcode::-webkit-inner-spin-button {
     border: 5px solid #61a3ff;
 }
 
-#register-btn, #login-btn {
+#register-btn,
+#login-btn {
     background-color: #2a83ff;
     border: none;
     border-radius: 20px;
@@ -753,7 +790,8 @@ input#shopping-cart-zipcode::-webkit-inner-spin-button {
     color: #ffffff;
 }
 
-#register-btn:hover, #login-btn:hover {
+#register-btn:hover,
+#login-btn:hover {
     background-color: #61a3ff;
     outline: none;
 }

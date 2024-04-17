@@ -1,11 +1,11 @@
 <%- include('../partials/head') %>
 <body>
     <header>
-        <nav class="nav-bar">
+        <nav class="nav-bar nav-bar-indexp">
             <div class="top-nav-bar">
                 <div class="top-nav-bar-left">
                     <a href="/">
-                        <img src="/images/logo-transparent.png" alt="Logo">
+                        <img alt="Neptune's Nook Logo" src="/images/logo-transparent.png">
                     </a>
                 </div>
                 <div class="top-nav-bar-right">
@@ -42,12 +42,11 @@
                             </div>
                         <% } %>
                     </div>
-
+                    
                     <div id="top-nav-bar-right-ham-div">
                         <button type="button" onclick="displayBottomNav()">
                             <img alt="hamburger button" src="/images/menu.png" id="top-nav-bar-right-ham-img">
                         </button>
-
                     </div>
                 </div>
             </div>
@@ -89,94 +88,74 @@
         </nav>
     </header>
     <main>
-
-        <div class="products-details-container">
-            <aside class="products-details-left-div">
-                <img class="products-details-img" alt="<%= product.product_name %>"src="<%= product.product_img_url %>">
-            </aside>
-
-            <div class="products-details-right-div">
-                <h1>
-                    <%= product.product_name %>
-                </h1>
-                <div class="products-details-ratings-div">
-                    <div class="products-details-stars">
-                        <ul>
-                            <li>
-                                &starf;
-                            </li>
-                            <li>
-                                &starf;
-                            </li>
-                            <li>
-                                &starf;
-                            </li>
-                            <li>
-                                &starf;
-                            </li>
-                            <li>
-                                &star;
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="products-details-ratings">
-                        <a href="#">300 Ratings</a>
-                    </div>
-                </div>
-
-                <div class="products-details-pricing-div">
-                    <p class="products-details-pricing">
-                        <strong>$<%= parseFloat(product.product_price).toFixed(2) %></strong>
-                    </p>
-                    <p>Best Price!</p>
-                </div>
-
-                <div class="products-details-desc">
-                    <h3>Description</h3>
-                    <p>
-                        <%= product.product_desc %>
-                    </p>
-                </div>
-
-                <div class="products-details-interesting">
-                    <h3>Interesting Facts</h3>
-                    <ul>
-                        <li>Shatter-proof acrylic construction</li>
-                        <li>Versatile day/night LED lighting</li>
-                        <li>Internal filtration system</li>
-                    </ul>
-                </div>
-
-                <div class="products-details-shipping-div">
-                    <div class="products-details-shipping-zip">
-                        <img src="/images/shipping-icon.png" alt="shipping icon">
-                        <label for="shipping-zipcode">Ship to zipcode: </label>
-                        <input type="number" id="shipping-zipcode" min="0">
-                    </div>
-                    <p>Free shipping on orders of $35+</p>
-                </div>
-
-                <!--
-                <form class="products-details-cart-div">
-                    <div class="products-details-input-div">
-                        <label for="quantity-input">Qty:</label>
-                        <input type="number" id="quantity-input" min="1">
-                    </div>
-                    <button type="submit" id="add-cart-btn">Add To Cart</button>
-                </form>
-                -->
-
-                <form class="products-details-cart-div" action="/cart/addToCart/<%= user_id %>" method="post">
-                    <div class="products-details-input-div">
-                        <label for="quantity-input">Qty:</label>
-                        <input type="number" id="quantity-input" name="quantity" min="1">
-                    </div>
-                    <input type="hidden" name="product_id" value="<%= product.product_id %>">
-                    <button type="submit" id="add-cart-btn">Add To Cart</button>
-                </form>
-
+        <div class="shopping-cart-container">
+            <div class="shopping-cart-heading">
+                <h2>Items</h2>
+                <h2>Price</h2>
             </div>
+
+            <% cartItems.forEach(function(item) { %>
+                <div class="shopping-cart-item-div">
+                    <div class="shopping-cart-item-left">
+                        <img class="shopping-cart-item-img" alt="<%= item.product_name %>"
+                            src="<%= item.product_img_url %>">
+                    </div>
+                    <form class="shopping-cart-item-right">
+                        <div class="shopping-cart-item-info">
+                            <p class="shopping-cart-item-info-name">
+                                <%= item.product_name %>
+                            </p>
+                            <p class="shopping-cart-item-info-price">
+                                $<%= item.product_price.toFixed(2) %>
+                            </p>
+                        </div>
+                        <div class="shopping-cart-item-right-btns">
+                            <div class="shopping-cart-item-quantity-div">
+                                <label for="shopping-cart-item-quantity-input">Qty:</label>
+                                <input type="number" id="shopping-cart-item-quantity-input" min="1" value="<%= item.item_quantity %>" disabled>
+                            </div>
+            
+                            <button type="button" class="shopping-cart-item-quantity-btn">Update Qty Price</button>
+                            <button type="button" class="shopping-cart-item-remove-btn">Delete Item</button>
+                        </div>
+                    </form>
+                </div>
+            <% }); %>
+
+            <div class="shopping-cart-bottom-div">
+                <div class="shopping-cart-zipcode-div">
+                    <label for="shopping-cart-zipcode">Shipping zipcode:</label>
+                    <input type="number" id="shopping-cart-zipcode" min="1" value=27403>
+                </div>
+                <button type="button" id="shopping-cart-zipcode-btn">Update zipcode</button>
+            </div>
+
+            <div class="shopping-cart-bottom-two-div">
+                <h2>Subtotal:</h2>
+                <h2 id="shopping-cart-subtotal">$119.00</h2>
+            </div>
+
+            <div class="shopping-cart-bottom-two-div">
+                <h2>Taxes (6.75%):</h2>
+                <h2 id="shopping-cart-tax">$8.03</h2>
+            </div>
+
+            <div class="shopping-cart-bottom-two-div">
+                <h2>Delivery: (Free for order over $30+, $10 delivery for orders under $30)</h2>
+                <h2 id="shopping-cart-delivery">FREE</h2>
+            </div>
+
+            <div class="shopping-cart-bottom-two-div">
+                <h2>Grand Total:</h2>
+                <h2 id="shopping-cart-grandtotal">$127.03</h2>
+            </div>
+
+            <div class="shopping-cart-bottom-two-btn-div">
+                <button type="button" id="shopping-cart-checkout-btn">Checkout</button>
+            </div>
+
         </div>
+
 
     </main>
     <footer>
