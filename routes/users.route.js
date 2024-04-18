@@ -13,6 +13,7 @@ router.get('/register', function (req, res) {
 router.get("/:email", usersController.getOneByEmail);
 router.post("/new", usersController.createNewUser);
 router.get("/type/:id", usersController.getUserType);
+router.get("/admin/bulk-upload", usersController.getBulkUploadPage);
 
 /*
 router.post("/new", menucontroller.createNew);

@@ -7,6 +7,12 @@ function getAll() {
   return data;
 };
 
+function getAllAndCategoryName() {
+  let sql = "SELECT Products.product_id, Products.product_name, Products.product_desc, Products.product_desc, Products.product_img_url, Products.product_price, Categories.category_name FROM Products JOIN Categories where Products.category_id = Categories.category_id;";
+  const data = db.all(sql);
+  return data;
+}
+
 function getAllByCategory(category) {
   let sql = "SELECT * FROM Products WHERE category_id =?";
   const data = db.all(sql, category);
@@ -30,6 +36,23 @@ function getCategoryById(id) {
   const item = db.get(sql, id);
   return item;
 }
+
+async function createNewProduct(product) {
+  let sql = "SELECT category_id FROM Categories WHERE category_name = ?;";
+  let category = await db.get(sql, product.productCategory);
+  
+  if (!category) {
+      throw new Error(`Category ${product.productCategory} not found`);
+  }
+
+  sql = 'INSERT INTO Products ("product_name", "product_desc", "product_img_url", "product_price", "category_id") VALUES (?, ?, ?, ?, ?);';
+  const params = [product.productName, product.productDesc, product.productImagePath, product.productPrice.replace('$', ''), category.category_id];
+  const item = await db.run(sql, params);
+  return item;
+}
+
+
+ 
 
 /*
 
@@ -67,6 +90,9 @@ module.exports = {
   getAllByFeatured,
   getOneById,
   getCategoryById,
+  createNewProduct,
+  getAllAndCategoryName,
+
   /*
   createNew,
   search,

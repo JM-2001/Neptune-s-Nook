@@ -36,31 +36,34 @@ function hideCreateProduct() {
 
 let editProductBoolean = false;
 
-function makeProductEdit() {
-    const productDiv = document.getElementById('product-listing-1');
-    const productSaveBtn = document.querySelector('#product-listing-1 .listing-btn-div .save-btn');
-    const productGenBtn = document.querySelector('#product-listing-1 .listing-btn-div .edit-btn');
-    const productInputs = document.querySelectorAll('#product-listing-1 .listing-div input');
-    const productInputId = document.getElementById('product-id');
-    const productTextarea = document.getElementById('product-desc');
+function makeProductEdit(productId) {
+    const productDiv = document.getElementById(`product-listing-${productId}`);
+    const productSaveBtn = productDiv.querySelector('.listing-btn-div .save-btn');
+    const productGenBtn = productDiv.querySelector('.listing-btn-div .edit-btn');
+    const productInputs = productDiv.querySelectorAll('.listing-div input');
+    const productTextarea = productDiv.querySelector('.listing-div textarea');
 
     if (editProductBoolean === true) {
         productSaveBtn.classList.remove('hidden');
         productGenBtn.textContent = "Cancel";
         for (let i = 0; i < productInputs.length; i++) {
             let element = productInputs[i];
-            element.removeAttribute('readonly');
+            // Skip the Product ID input field
+            if (element.id !== `product-id-${productId}`) {
+                element.removeAttribute('readonly');
+            }
         }
         productTextarea.removeAttribute('readonly');
-        productInputId.removeAttribute('readonly');
         editProductBoolean = false;
     } else {
         for (let i = 0; i < productInputs.length; i++) {
             let element = productInputs[i];
-            element.setAttribute('readonly', 'readonly');
+            // Skip the Product ID input field
+            if (element.id !== `product-id-${productId}`) {
+                element.setAttribute('readonly', 'readonly');
+            }
         }
         productTextarea.setAttribute('readonly', 'readonly');
-        productInputId.setAttribute('readonly', 'readonly');
         productSaveBtn.classList.add('hidden');
         productGenBtn.textContent = "Edit";
         editProductBoolean = true;
@@ -69,7 +72,7 @@ function makeProductEdit() {
 
 const dropDownNav = document.getElementById('drop-down-nav-div');
 
-dropDownNav.addEventListener('click', function() {
+dropDownNav.addEventListener('click', function () {
     const dropDownMenu = document.querySelector('.dropdown-div');
 
     if (dropDownMenu.style.display == 'none') {
@@ -79,7 +82,7 @@ dropDownNav.addEventListener('click', function() {
     }
 });
 
-document.getElementById('register-form').addEventListener('submit', function(event) {
+document.getElementById('register-form').addEventListener('submit', function (event) {
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirm-password').value;
 
@@ -88,3 +91,20 @@ document.getElementById('register-form').addEventListener('submit', function(eve
         alert('Passwords do not match.');
     }
 });
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('json-file-input').addEventListener('change', function () {
+        console.log('Starting file read');
+        const file = this.files[0];
+        const reader = new FileReader();
+        reader.onload = function () {
+            document.getElementById('json-textarea').value = reader.result;
+            console.log(document.getElementById('json-textarea').value);
+        };
+        reader.onerror = function () {
+            console.error('Error reading file:', reader.error);
+        };
+        reader.readAsText(file);
+    });
+});
+

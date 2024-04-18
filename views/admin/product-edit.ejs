@@ -1,4 +1,4 @@
-<%- include('../partials/head') %>
+<%- include('../partials/admin-head') %>
 <body>
     <header>
         <nav class="nav-bar">
@@ -86,96 +86,109 @@
                     </li>
                 </ul>
             </div>
+            <div id="bottom-nav-bar-admin">
+                <ul>
+                    <li>
+                        <a href="bulk-upload.html">
+                            Bulk Upload Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product-edit.html">
+                            Edit Product
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
     <main>
 
-        <div class="products-details-container">
-            <aside class="products-details-left-div">
-                <img class="products-details-img" alt="<%= product.product_name %>"src="<%= product.product_img_url %>">
-            </aside>
-
-            <div class="products-details-right-div">
-                <h1>
-                    <%= product.product_name %>
-                </h1>
-                <div class="products-details-ratings-div">
-                    <div class="products-details-stars">
-                        <ul>
-                            <li>
-                                &starf;
-                            </li>
-                            <li>
-                                &starf;
-                            </li>
-                            <li>
-                                &starf;
-                            </li>
-                            <li>
-                                &starf;
-                            </li>
-                            <li>
-                                &star;
-                            </li>
-                        </ul>
+        <div class="filtering-div">
+            <h3>Filtering:</h3>
+            <form class="search-bar-filter">
+                <label for="search-bar-filter-input" id="search-bar-filter-label">Empty</label>
+                <input type="text" id="search-bar-filter-input" name="search-bar-filter-input">
+                <label for="search-bar-filter-btn" id="search-bar-filter-btn-label">
+                    <button type="submit" id="search-bar-filter-btn">
+                        <img alt="search icon" src="/images/search.png">
+                    </button>
+                </label>
+            </form>
+            <h3>Categories:</h3>
+            <form class="form-filter">
+                <fieldset>
+                    <div>
+                        <input type="radio" id="option-fish-tanks" name="option-fish-tanks" value="option-fish-tanks">
+                        <label for="option-fish-tanks">Fish Tanks</label>
                     </div>
-                    <div class="products-details-ratings">
-                        <a href="#">300 Ratings</a>
+                    <div>
+                        <input type="radio" id="option-tank-supplies" name="option-tank-supplies"
+                            value="option-tank-supplies">
+                        <label for="option-tank-supplies">Tank Supplies</label>
                     </div>
-                </div>
-
-                <div class="products-details-pricing-div">
-                    <p class="products-details-pricing">
-                        <strong>$<%= parseFloat(product.product_price).toFixed(2) %></strong>
-                    </p>
-                    <p>Best Price!</p>
-                </div>
-
-                <div class="products-details-desc">
-                    <h3>Description</h3>
-                    <p>
-                        <%= product.product_desc %>
-                    </p>
-                </div>
-
-                <div class="products-details-interesting">
-                    <h3>Interesting Facts</h3>
-                    <ul>
-                        <li>Shatter-proof acrylic construction</li>
-                        <li>Versatile day/night LED lighting</li>
-                        <li>Internal filtration system</li>
-                    </ul>
-                </div>
-
-                <div class="products-details-shipping-div">
-                    <div class="products-details-shipping-zip">
-                        <img src="/images/shipping-icon.png" alt="shipping icon">
-                        <label for="shipping-zipcode">Ship to zipcode: </label>
-                        <input type="number" id="shipping-zipcode" min="0">
+                    <div>
+                        <input type="radio" id="option-tank-decor" name="option-tank-decor" value="option-tank-decor">
+                        <label for="option-tank-decor">Tank Decor</label>
                     </div>
-                    <p>Free shipping on orders of $35+</p>
-                </div>
-
-                <!--
-                <form class="products-details-cart-div">
-                    <div class="products-details-input-div">
-                        <label for="quantity-input">Qty:</label>
-                        <input type="number" id="quantity-input" min="1">
+                    <div>
+                        <input type="radio" id="option-fish" name="option-fish" value="option-fish">
+                        <label for="option-fish">Fish</label>
                     </div>
-                    <button type="submit" id="add-cart-btn">Add To Cart</button>
-                </form>
-                -->
+                </fieldset>
+                <button type="submit" id="filtering-btn">Filter</button>
+            </form>
+        </div>
 
-                <form class="products-details-cart-div" action="/cart/addToCart/<%= user_id %>" method="post">
-                    <div class="products-details-input-div">
-                        <label for="quantity-input">Qty:</label>
-                        <input type="number" id="quantity-input" name="quantity" min="1">
-                    </div>
-                    <input type="hidden" name="product_id" value="<%= product.product_id %>">
-                    <button type="submit" id="add-cart-btn">Add To Cart</button>
-                </form>
-
+        <div class="products-listing-container">
+            <div id="products-listing-container-heading">
+                <h3>Products:</h3>
+                <button type="button" id="create-product-btn" onclick="displayCreateProduct()">Create</button>
             </div>
+
+
+            <% products.forEach(function(product) { %>
+                <form id="product-listing-<%= product.product_id %>" class="product-listing">
+                    <div class="listing-div">
+                        <label for="product-id-<%= product.product_id %>">Product ID:</label>
+                        <input type="number" id="product-id-<%= product.product_id %>" name="product-id" value="<%= product.product_id %>" readonly>
+                    </div>
+            
+                    <div class="listing-div">
+                        <label for="product-name-<%= product.product_id %>">Product Name:</label>
+                        <input type="text" id="product-name-<%= product.product_id %>" name="product-name" value="<%= product.product_name %>" readonly>
+                    </div>
+            
+                    <div class="listing-div">
+                        <label for="product-desc-<%= product.product_id %>">Product Description:</label>
+                        <textarea id="product-desc-<%= product.product_id %>" name="product-desc"><%= product.product_desc %></textarea readonly>
+                    </div>
+            
+                    <div class="listing-div">
+                        <label for="product-cate-<%= product.product_id %>">Product Category:</label>
+                        <input type="text" id="product-cate-<%= product.product_id %>" name="product-cate" value="<%= product.category_name %>" readonly>
+                    </div>
+            
+                    <div class="listing-div">
+                        <label for="product-img-path-<%= product.product_id %>">Product Image Path:</label>
+                        <input type="text" id="product-img-path-<%= product.product_id %>" name="product-img-path" value="<%= product.product_img_url %>" readonly>
+                    </div>
+            
+                    <div class="listing-div">
+                        <label for="product-price-<%= product.product_id %>">Product Price:</label>
+                        <input type="text" id="product-price-<%= product.product_id %>" name="product-price" value="<%= product.product_price %>" readonly>
+                    </div>
+            
+                    <div class="listing-btn-div">
+                        <label>Actions:</label>
+                        <form>
+                            <button type="button" class="save-btn hidden">Save</button>
+                        </form>
+                        <button type="button" class="edit-btn" onclick="makeProductEdit(<%= product.product_id %>)">Edit</button>
+                    </div>
+                </form>
+            <% }); %>
+
         </div>
 
     </main>

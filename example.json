@@ -2,8 +2,8 @@
     {
         "productName": "Koller Products 3 Gallon Tropical 360 View Aquarium Starter Kit",
         "productDesc": "NULL",
-        "productCategories": ["Fish Tanks", "Tank Supplies"],
-        "productImagePath": "images/koller_product_350_starter.png",
+        "productCategory": "Fish Tanks",
+        "productImagePath": "/images/koller_product_350_starter.png",
         "productPrice": "$130.00"
     },
     {
