@@ -4,11 +4,14 @@ const router = express.Router();
 
 const productsController = require("../controllers/products.controller");
 
-
 router.get("/all", productsController.getAll);
 router.get("/category/:category", productsController.getAllByCategory);
 router.get("/featured", productsController.getAllByFeatured);
 router.get("/product/:id", productsController.getOneById);
+
+router.post('/bulk-upload', productsController.bulkUpload);
+
+router.get("/admin/product-edit", productsController.getAllAndCategoryName);
 
 /*
 router.post("/new", menucontroller.createNew);

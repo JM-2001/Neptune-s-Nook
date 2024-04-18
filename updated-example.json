@@ -1,0 +1,37 @@
+[
+    {
+        "productName": "Imagitarium Aqua Castle Aquarium Decor",
+        "productDesc": "The Imagitarium Aqua Castle Aquarium Decor transforms your aquarium into the water wonderland you've dreamed of. With a splash of color and texture they'll love to swim around, this decor opens the door for your finned friends to have an enchanting day.",
+        "productCategory": "Tank Decor",
+        "productImagePath": "/images/imagitarium_aqua_castle_decor.png",
+        "productPrice": "$9.99"
+    },
+    {
+        "productName": "Top Fin Fantasy Tree House Aquarium Ornament",
+        "productDesc": "This Top Fin Brown Fantasy House in Tree Aquarium Ornament adds a beautiful piece to your underwater world. Crafted in a very realistic way, this piece features a house built inside a majestic tree, and promises to make a wonderful addition to your aquarium while upping its aesthetic.",
+        "productCategory": "Tank Decor",
+        "productImagePath": "/images/top_fin_fantasy_tree_decor.png",
+        "productPrice": "$21.00"
+    },
+    {
+        "productName": "Penn-Plax 25-foot Aquarium Air Tubing",
+        "productDesc": "Clear standard size aquarium airline tubing for use with all standard air equipment such as gang valves, air operated toys and air stones. 25ft length is ideal for larger applications.",
+        "productCategory": "Tank Supplies",
+        "productImagePath": "/images/penn_plax_25ft_tubing.png",
+        "productPrice": "$6.69"
+    },
+    {
+        "productName": "API Freshwater Master Test Kit",
+        "productDesc": "The API Freshwater Master Test Kit measures the 4 most important levels in freshwater aquariums quickly and accurately, including pH, high-range pH, ammonia, nitrite, and nitrate. With scientific accuracy for professional results, the reusable Freshwater Master Test Kit comes with 4 glass test tubes with snap-tight caps and a convenient holding tub for easy storage. Also includes a step-by-step instruction booklet with a colour chart that provides information on how to correct unsafe water conditions.",
+        "productCategory": "Tank Supplies",
+        "productImagePath": "/images/api_freshwater_master_test_kit.png",
+        "productPrice": "$51.00"
+    },
+    {
+        "productName": "Penn-Plax Mushrooms On Rock Aquarium Ornament",
+        "productDesc": "NULL",
+        "productCategory": "Tank Decor",
+        "productImagePath": "/images/penn_plax_mushrooms_rock_decor.png",
+        "productPrice": "$13.00"
+    }
+]

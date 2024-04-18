@@ -4,9 +4,19 @@ html {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 1em;
     margin: 0px;
+    /*
     height: 100%;
+    min-height: 100vh;
+    */
     width: 100%;
 }
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 
 /* Header */
 .nav-bar {
@@ -107,6 +117,30 @@ html {
     width: 30px;
 }
 
+.dropdown-div {
+    display: none;
+    position: absolute;
+    background-color: #2a83ff;
+    min-width: 175px;
+    right: 0px;
+    top: 70px;
+}
+
+.dropdown-div a {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+    color: #000000;
+    font-weight: bold;
+}
+
+.dropdown-div a:hover {
+    background-color: #4592fd;
+}
+
 #top-nav-bar-right-ham-div,
 .search-bar-bottom {
     display: none;
@@ -170,7 +204,8 @@ html {
 /* Footer */
 footer {
     background-color: #559cff;
-    margin: 10px 0px 0px 0px;
+    margin: auto 0px 0px 0px;
+    /* 10px 0px 0px 0px */
     padding: 15px;
 }
 
@@ -209,12 +244,17 @@ footer {
     margin: 10px 0px;
 }
 
-/* bulk-upload HTML Main CSS */
+/* Main */
 main {
     width: 100%;
     height: max-content;
 }
 
+.hidden {
+    display: none;
+}
+
+/* bulk-upload HTML Main CSS */
 #bu-instructions-section {
     width: 90%;
     height: auto;
@@ -426,7 +466,8 @@ main {
     background-color: #F99B7D;
 }
 
-.hidden, .product-listing-add-hidden {
+.hidden,
+.product-listing-add-hidden {
     display: none;
 }
 

@@ -1,11 +1,11 @@
-<%- include('../partials/head') %>
+<%- include('../partials/admin-head') %>
 <body>
     <header>
-        <nav class="nav-bar nav-bar-indexp">
+        <nav class="nav-bar">
             <div class="top-nav-bar">
                 <div class="top-nav-bar-left">
                     <a href="/">
-                        <img alt="Neptune's Nook Logo" src="/images/logo-transparent.png">
+                        <img src="/images/logo-transparent.png" alt="Logo">
                     </a>
                 </div>
                 <div class="top-nav-bar-right">
@@ -42,11 +42,12 @@
                             </div>
                         <% } %>
                     </div>
-                    
+
                     <div id="top-nav-bar-right-ham-div">
                         <button type="button" onclick="displayBottomNav()">
                             <img alt="hamburger button" src="/images/menu.png" id="top-nav-bar-right-ham-img">
                         </button>
+
                     </div>
                 </div>
             </div>
@@ -85,77 +86,59 @@
                     </li>
                 </ul>
             </div>
+            <div id="bottom-nav-bar-admin">
+                <ul>
+                    <li>
+                        <a href="bulk-upload.html">
+                            Bulk Upload Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="product-edit.html">
+                            Edit Product
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
     <main>
-        <div class="shopping-cart-container">
-            <div class="shopping-cart-heading">
-                <h2>Items</h2>
-                <h2>Price</h2>
+
+        <section id="bu-instructions-section">
+            <h1>
+                Bulk Upload Instructions
+            </h1>
+            <figure>
+                <img src="/images/example-json.png" alt="A image of a json file">
+                <figcaption>A json file</figcaption>
+            </figure>
+            <ol>
+                <li>Please select a .json file that is wirtten as the picture above</li>
+                <ul>
+                    <li>It can have NULL properties if there is nothing to fill out for a section</li>
+                </ul>
+                <li>Once you are done, press upload</li>
+            </ol>
+        </section>
+
+        <!--
+        <form id="bulk-upload-form">
+            <div class="form-label-div" id="bulk-upload-form-div">
+                <label for="json-file-input">Select a file:</label>
+                <input type="file" id="json-file-input" accept=".json">
             </div>
+            <button type="submit" id="bulk-upload-form-btn">Upload</button>
+        </form>
+        -->
 
-            <% cartItems.forEach(function(item) { %>
-                <div class="shopping-cart-item-div">
-                    <div class="shopping-cart-item-left">
-                        <img class="shopping-cart-item-img" alt="<%= item.product_name %>"
-                            src="<%= item.product_img_url %>">
-                    </div>
-                    <form class="shopping-cart-item-right">
-                        <div class="shopping-cart-item-info">
-                            <p class="shopping-cart-item-info-name">
-                                <%= item.product_name %>
-                            </p>
-                            <p class="shopping-cart-item-info-price">
-                                $<%= item.product_price.toFixed(2) %>
-                            </p>
-                        </div>
-                        <div class="shopping-cart-item-right-btns">
-                            <div class="shopping-cart-item-quantity-div">
-                                <label for="shopping-cart-item-quantity-input">Qty:</label>
-                                <input type="number" id="shopping-cart-item-quantity-input" min="1" value="<%= item.item_quantity %>" disabled>
-                            </div>
-            
-                            <button type="button" class="shopping-cart-item-quantity-btn">Update Qty Price</button>
-                            <button type="button" class="shopping-cart-item-remove-btn">Delete Item</button>
-                        </div>
-                    </form>
-                </div>
-            <% }); %>
-
-            <div class="shopping-cart-bottom-div">
-                <div class="shopping-cart-zipcode-div">
-                    <label for="shopping-cart-zipcode">Shipping zipcode:</label>
-                    <input type="number" id="shopping-cart-zipcode" min="1" value=27403>
-                </div>
-                <button type="button" id="shopping-cart-zipcode-btn">Update zipcode</button>
+        <form id="bulk-upload-form" method="POST" action="/products/bulk-upload">
+            <div class="form-label-div" id="bulk-upload-form-div">
+                <label for="json-file-input">Select a file:</label>
+                <input type="file" id="json-file-input" name="Upload" accept=".json">
+                <textarea id="json-textarea" name="jsonData" style="visibility:hidden; height:0;"></textarea>
             </div>
-
-            <div class="shopping-cart-bottom-two-div">
-                <h2>Subtotal:</h2>
-                <h2 id="shopping-cart-subtotal">$119.00</h2>
-            </div>
-
-            <div class="shopping-cart-bottom-two-div">
-                <h2>Taxes (6.75%):</h2>
-                <h2 id="shopping-cart-tax">$8.03</h2>
-            </div>
-
-            <div class="shopping-cart-bottom-two-div">
-                <h2>Delivery: (Free for order over $30+, $10 delivery for orders under $30)</h2>
-                <h2 id="shopping-cart-delivery">FREE</h2>
-            </div>
-
-            <div class="shopping-cart-bottom-two-div">
-                <h2>Grand Total:</h2>
-                <h2 id="shopping-cart-grandtotal">$127.03</h2>
-            </div>
-
-            <div class="shopping-cart-bottom-two-btn-div">
-                <button type="button" id="shopping-cart-checkout-btn">Checkout</button>
-            </div>
-
-        </div>
-
+            <button type="submit" id="bulk-upload-form-btn">Upload</button>
+        </form>
 
     </main>
     <footer>

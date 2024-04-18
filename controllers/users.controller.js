@@ -60,6 +60,29 @@ function getUserType(req, res, next) {
   }
 }
 
+function getBulkUploadPage(req, res, next) {
+  let loggedIn = req.user ? true : false;
+  let user_type = null;
+  let user_id = null;
+  if (req.user) {
+    user_type = req.user.user_type;
+    user_id = req.user.user_id;
+  }
+  //console.log('User Type:', user_type);
+  //console.log('User ID:', user_id);
+  try {
+    res.render('admin/bulk-upload', {
+      loggedIn: loggedIn,
+      user_type: user_type,
+      user_id: user_id,
+      title: "Bulk Upload - Admin Only"
+    });
+  } catch (err) {
+    console.error("Error while getting page ", err.message);
+    next(err);
+  }
+}
+
 /*
 function createNew(req, res, next) {
   let id = parseInt(req.body.id);
@@ -135,6 +158,7 @@ module.exports = {
   getOneByEmail,
   createNewUser,
   getUserType,
+  getBulkUploadPage,
   /*
   getAllByCategory,
   getAllByFeatured,
