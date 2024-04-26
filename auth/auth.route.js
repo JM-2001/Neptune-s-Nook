@@ -6,7 +6,7 @@ router.get('/login', function (req, res) {
     res.render("user/login", { title: "Login", message: req.flash('error')[0] })
 });
 
-/*
+/* THIS CAN STAY
 router.post('/login', function (req, res, next) {
     passport.authenticate('local', function (err, user, info) {
         if (err) {
@@ -33,7 +33,7 @@ router.post('/login', function (req, res, next) {
         }
         if (!user) {
             req.flash('error', info.message);
-            return res.redirect('/auth/login'); // Change this line
+            return res.redirect('/auth/login'); 
         }
         req.logIn(user, function (err) {
             if (err) {

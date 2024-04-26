@@ -41,30 +41,43 @@ function getAllCartProductsByCartIdAndUserId(req, res, next) {
     }
 }
 
-function getAllCartProductsByUserId(req, res, next) {
+async function getAllCartProductsByUserId(req, res, next) {
     let user_id = req.params.user_id;
     let loggedIn = req.user ? true : false;
     let user_type = null;
     if (req.user) {
         user_type = req.user.user_type;
     }
-    //console.log('User Type:', user_type);
-    //console.log('User ID:', user_id);
     try {
-        //res.json(model.getAllCartProductsByUserId(user_id));
+        let cartItems = await model.getAllCartProductsByUserId(user_id);
+        let cart = await model.getCartIdByUserId(user_id); // fetch the cart
+        let cartId = cart ? cart.cart_id : null; // check if cart is defined before accessing its properties
+        let subtotal = 0;
+        for (let cartItem of cartItems) {
+            subtotal += cartItem.item_quantity * cartItem.product_price;
+        }
+
+        let taxes = subtotal * 0.0675;
+        let delivery = subtotal > 30 ? 'FREE' : 10;
+        let grandTotal = delivery === 'FREE' ? subtotal + taxes : subtotal + taxes + delivery;
         res.render('services/cart', {
-            cartItems: model.getAllCartProductsByUserId(user_id),
+            cartItems: cartItems,
             loggedIn: loggedIn,
             user_type: user_type,
             user_id: user_id,
-            title: "Cart"
+            cartId: cartId, // pass cartId to the template
+            title: "Cart",
+            subtotal: subtotal.toFixed(2),
+            taxes: taxes.toFixed(2),
+            delivery: delivery === 'FREE' ? delivery : delivery.toFixed(2),
+            grandTotal: grandTotal.toFixed(2)
         });
-
     } catch (err) {
         console.error("Error while getting carts ", err.message);
         next(err);
     }
 }
+
 
 function abandonInactiveCarts() {
     console.log('Running abandonInactiveCarts function');
@@ -76,54 +89,144 @@ function abandonInactiveCarts() {
     }
 }
 
-/*
+/* THIS CAN STAY
 async function addToCart(req, res, next) {
-    let userId = req.params.user_id;
+    let userId = null;
     let productId = req.body.product_id;
     let quantity = req.body.quantity;
+    if (req.user) {
+        userId = req.user.user_id;
+    }
+
+    console.log('User ID:', userId);
     try {
-        let cartItems = await model.getAllCartProductsByUserId(userId);
-        if (cartItems.length === 0) {
-            await model.createCartForUser(userId);
-            cartItems = await model.getAllCartProductsByUserId(userId);
+        let cart = await model.getCartByUserId(userId);
+        console.log('Cart:', cart);
+        let cartId;
+        if (!cart) {
+            cartId = await model.createCartForUser(userId);
+            console.log('New cart ID:', cartId);
+        } else {
+            cartId = cart.cart_id;
         }
-        console.log(cartItems[0].cart_id);
-        let cartId = cartItems[0].cart_id;
-        await model.addProductToCart(cartId, productId, quantity);
-        res.json({ message: 'Product added to cart' });
-    } catch (err) {
-        console.error("Error while adding product to cart ", err.message);
-        next(err);
+        model.addProductToCart(cartId, productId, quantity);
+        //res.json({ message: 'Product added to cart' });
+        res.redirect('/products/product/' + productId);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while adding the product to the cart' });
     }
 }
 */
 
 async function addToCart(req, res, next) {
-    let userId = req.params.user_id;
+    let userId = null;
     let productId = req.body.product_id;
-    let quantity = req.body.quantity;
+    let quantity = Number(req.body.quantity); // Ensure quantity is a number
+    if (req.user) {
+        userId = req.user.user_id;
+    }
+
+    console.log('User ID:', userId);
     try {
-        let cartItems = await model.getAllCartProductsByUserId(userId);
+        let cart = await model.getCartByUserId(userId);
+        console.log('Cart:', cart);
         let cartId;
-        if (cartItems.length === 0) {
-            model.createCartForUser(userId, (err, id) => {
-                if (err) {
-                    console.error("Error while creating cart for user ", err.message);
-                    next(err);
-                } else {
-                    cartId = id;
-                    model.addProductToCart(cartId, productId, quantity);
-                    res.json({ message: 'Product added to cart' });
-                }
-            });
+        if (!cart) {
+            cartId = await model.createCartForUser(userId);
+            console.log('New cart ID:', cartId);
         } else {
-            cartId = cartItems[0].cart_id;
-            await model.addProductToCart(cartId, productId, quantity);
-            res.json({ message: 'Product added to cart' });
+            cartId = cart.cart_id;
         }
-    } catch (err) {
-        console.error("Error while adding product to cart ", err.message);
-        next(err);
+        // Check if the product already exists in the cart
+        let cartProduct = await model.getCartProductByCartIdAndProductId(cartId, productId);
+        if (cartProduct) {
+            // If the product exists, update the quantity
+            let newQuantity = Number(cartProduct.item_quantity) + quantity; // Ensure cartProduct.item_quantity is a number
+            model.updateCartProductQuantity(cartId, productId, newQuantity);
+        } else {
+            // If the product doesn't exist, add it to the cart
+            model.addProductToCart(cartId, productId, quantity);
+        }
+        //res.json({ message: 'Product added to cart' });
+        res.redirect('/products/product/' + productId);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while adding the product to the cart' });
+    }
+}
+
+function updateCartProductQuantity(req, res, next) {
+    console.log(req.body); // Debug step 1
+
+    let userId = null;
+    let cartId = req.body.cartId;
+    let productId = req.body.productId;
+    let quantity = req.body.quantity;
+
+    console.log(cartId, productId, quantity); // Debug step 2
+
+    if (req.user) {
+        userId = req.user.user_id;
+    }
+
+    try {
+        model.updateCartProductQuantity(cartId, productId, quantity);
+        res.redirect('/cart/getCart/' + userId);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while updating the product quantity' });
+    }
+}
+
+async function updateProductQuantity(req, res, next) {
+    let cartId = req.params.cartId;
+    let productId = req.params.productId;
+    let quantity = req.body.quantity;
+
+    try {
+        await model.updateCartProductQuantity(cartId, productId, quantity);
+        //res.json({ message: 'Product quantity updated' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while updating the product quantity' });
+    }
+}
+
+function deleteCartProduct(req, res, next) {
+    console.log(req.body); // Debug step 1
+
+    let userId = null;
+    let cartId = req.body.cartId;
+    let productId = req.body.productId;
+
+    console.log(cartId, productId); // Debug step 2
+
+    if (req.user) {
+        userId = req.user.user_id;
+    }
+
+    try {
+        model.deleteCartProduct(cartId, productId);
+        res.redirect('/cart/getCart/' + userId);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while deleting the product from the cart' });
+    }
+}
+
+async function markCartAsPurchased(req, res, next) {
+    let cartId = req.body.cartId;
+
+    console.log(cartId); // Debug step 2
+
+    
+    try {
+        model.markCartAsPurchased(cartId);
+        res.json({ message: 'Cart marked as purchased' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'An error occurred while marking the cart as purchased' });
     }
 }
 
@@ -136,4 +239,8 @@ module.exports = {
 
 
     addToCart,
+    updateProductQuantity,
+    updateCartProductQuantity,
+    deleteCartProduct,
+    markCartAsPurchased,
 };

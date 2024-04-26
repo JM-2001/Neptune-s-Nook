@@ -89,12 +89,12 @@
             <div id="bottom-nav-bar-admin">
                 <ul>
                     <li>
-                        <a href="bulk-upload.html">
+                        <a href="/user/admin/bulk-upload">
                             Bulk Upload Products
                         </a>
                     </li>
                     <li>
-                        <a href="product-edit.html">
+                        <a href="/products/admin/product-edit">
                             Edit Product
                         </a>
                     </li>
@@ -131,11 +131,10 @@
         </form>
         -->
 
-        <form id="bulk-upload-form" method="POST" action="/products/bulk-upload">
+        <form id="bulk-upload-form" method="POST" action="/products/bulk-upload" enctype="multipart/form-data">
             <div class="form-label-div" id="bulk-upload-form-div">
                 <label for="json-file-input">Select a file:</label>
-                <input type="file" id="json-file-input" name="Upload" accept=".json">
-                <textarea id="json-textarea" name="jsonData" style="visibility:hidden; height:0;"></textarea>
+                <input type="file" id="json-file-input" name="uploadFile" accept=".json">
             </div>
             <button type="submit" id="bulk-upload-form-btn">Upload</button>
         </form>

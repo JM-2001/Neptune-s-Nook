@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const usersController = require("../controllers/users.controller");
+const isAdmin = require('../auth/auth.middleware');
 
 
 router.get("/all", usersController.getAll);
@@ -13,13 +14,8 @@ router.get('/register', function (req, res) {
 router.get("/:email", usersController.getOneByEmail);
 router.post("/new", usersController.createNewUser);
 router.get("/type/:id", usersController.getUserType);
-router.get("/admin/bulk-upload", usersController.getBulkUploadPage);
+router.get("/admin/bulk-upload", isAdmin, usersController.getBulkUploadPage);
 
-/*
-router.post("/new", menucontroller.createNew);
-router.get("/search", menucontroller.searchByName);
-router.delete("/delete/:id", menucontroller.deleteById);
-router.put("/update/:id", menucontroller.update)
-*/
+
 
 module.exports = router;

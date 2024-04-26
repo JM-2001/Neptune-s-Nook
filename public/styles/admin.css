@@ -473,19 +473,19 @@ main {
 
 .product-listing,
 .product-listing-add-show {
-    padding: 20px 0px;
+    padding: 20px;
     margin: 10px 0px;
     width: 100%;
     border-bottom: 2px solid #559cff;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
 }
 
 #product-listing-add {
-    border: 2px solid #559cff;
+    border: 2px solid #1b71e8;
 }
 
 .listing-div,

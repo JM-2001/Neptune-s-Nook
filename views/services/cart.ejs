@@ -100,7 +100,7 @@
                         <img class="shopping-cart-item-img" alt="<%= item.product_name %>"
                             src="<%= item.product_img_url %>">
                     </div>
-                    <form class="shopping-cart-item-right">
+                    <div class="shopping-cart-item-right">
                         <div class="shopping-cart-item-info">
                             <p class="shopping-cart-item-info-name">
                                 <%= item.product_name %>
@@ -110,15 +110,26 @@
                             </p>
                         </div>
                         <div class="shopping-cart-item-right-btns">
-                            <div class="shopping-cart-item-quantity-div">
-                                <label for="shopping-cart-item-quantity-input">Qty:</label>
-                                <input type="number" id="shopping-cart-item-quantity-input" min="1" value="<%= item.item_quantity %>" disabled>
-                            </div>
-            
-                            <button type="button" class="shopping-cart-item-quantity-btn">Update Qty Price</button>
-                            <button type="button" class="shopping-cart-item-remove-btn">Delete Item</button>
+                            <form action="/cart/updateProductQuantity/<%= item.cart_id %>/<%= item.product_id %>" method="POST">
+                                <div class="shopping-cart-item-quantity-div">
+                                    <label for="shopping-cart-item-quantity-input">Qty:</label>
+                                    <input type="number" name="quantity" id="shopping-cart-item-quantity-input" min="1" value="<%= item.item_quantity %>">
+                                </div>
+                            
+                                <input type="hidden" name="cartId" value="<%= item.cart_id %>">
+                                <input type="hidden" name="productId" value="<%= item.product_id %>">
+                            
+                                <button type="submit" class="shopping-cart-item-quantity-btn">Update Qty Price</button>
+                            </form>
+
+                            <form action="/cart/deleteCartProduct/<%= item.cart_id %>/<%= item.product_id %>" method="POST">
+                                <input type="hidden" name="cartId" value="<%= item.cart_id %>">
+                                <input type="hidden" name="productId" value="<%= item.product_id %>">
+                                <button type="submit" class="shopping-cart-item-remove-btn">Delete Item</button>
+                            </form>
+
                         </div>
-                    </form>
+                    </div>
                 </div>
             <% }); %>
 
@@ -130,6 +141,7 @@
                 <button type="button" id="shopping-cart-zipcode-btn">Update zipcode</button>
             </div>
 
+            <% /*
             <div class="shopping-cart-bottom-two-div">
                 <h2>Subtotal:</h2>
                 <h2 id="shopping-cart-subtotal">$119.00</h2>
@@ -149,12 +161,34 @@
                 <h2>Grand Total:</h2>
                 <h2 id="shopping-cart-grandtotal">$127.03</h2>
             </div>
+            */ %>
 
-            <div class="shopping-cart-bottom-two-btn-div">
-                <button type="button" id="shopping-cart-checkout-btn">Checkout</button>
+            <div class="shopping-cart-bottom-two-div">
+                <h2>Subtotal:</h2>
+                <h2 id="shopping-cart-subtotal">$<%= subtotal %></h2>
+            </div>
+            
+            <div class="shopping-cart-bottom-two-div">
+                <h2>Taxes (6.75%):</h2>
+                <h2 id="shopping-cart-tax">$<%= taxes %></h2>
+            </div>
+            
+            <div class="shopping-cart-bottom-two-div">
+                <h2>Delivery: (Free for order over $30+, $10 delivery for orders under $30)</h2>
+                <h2 id="shopping-cart-delivery"><%= delivery %></h2>
+            </div>
+            
+            <div class="shopping-cart-bottom-two-div">
+                <h2>Grand Total:</h2>
+                <h2 id="shopping-cart-grandtotal">$<%= grandTotal %></h2>
             </div>
 
-        </div>
+            <form class="shopping-cart-bottom-two-btn-div" action="/cart/markCartAsPurchased/<%= cartId %>" method="POST">
+                <input type="hidden" name="cartId" value="<%= cartId %>">
+                <button type="submit" id="shopping-cart-checkout-btn">Checkout</button>
+            </form>
+
+        </div>      
 
 
     </main>

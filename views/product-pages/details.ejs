@@ -141,11 +141,55 @@
                 <div class="products-details-interesting">
                     <h3>Interesting Facts</h3>
                     <ul>
-                        <li>Shatter-proof acrylic construction</li>
-                        <li>Versatile day/night LED lighting</li>
-                        <li>Internal filtration system</li>
                     </ul>
                 </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', (event) => {
+                        let url = 'https://www.marinespecies.org/rest/AphiaRecordsByName/{ScientificName}?like=true&marine_only=false'
+                        let scientificName = '<%= product.sci_name %>'
+                        url = url.replace('{ScientificName}', scientificName)
+                
+                        fetch(url)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error(`HTTP error! status: ${response.status}`);
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                const factsList = document.querySelector('.products-details-interesting ul');
+                                data.forEach(item => {
+                                    const listItem1 = document.createElement('li');
+                                    listItem1.textContent = `Scientific Name: ${item.scientificname}`;
+                                    factsList.appendChild(listItem1);
+                
+                                    const listItem2 = document.createElement('li');
+                                    listItem2.textContent = `Kingdom: ${item.kingdom}`;
+                                    factsList.appendChild(listItem2);
+                
+                                    const listItem3 = document.createElement('li');
+                                    listItem3.textContent = `Family: ${item.family}`;
+                                    factsList.appendChild(listItem3);
+                
+                                    const listItem4 = document.createElement('li');
+                                    listItem4.textContent = `Salt water: ${item.isMarine ? 'Yes' : 'No'}`;
+                                    factsList.appendChild(listItem4);
+                
+                                    const listItem5 = document.createElement('li');
+                                    listItem5.textContent = `Fresh water: ${item.isFreshwater ? 'Yes' : 'No'}`;
+                                    factsList.appendChild(listItem5);
+                
+                                    const listItem6 = document.createElement('li');
+                                    listItem6.textContent = `Brackish water: ${item.isBrackish ? 'Yes' : 'No'}`;
+                                    factsList.appendChild(listItem6);
+                                });
+                            })
+                            .catch(e => {
+                                console.log('There was a problem with the fetch operation: ' + e.message);
+                            });
+                    });
+                </script>
 
                 <div class="products-details-shipping-div">
                     <div class="products-details-shipping-zip">
@@ -168,12 +212,12 @@
 
                 <form class="products-details-cart-div" action="/cart/addToCart/<%= user_id %>" method="post">
                     <div class="products-details-input-div">
-                        <label for="quantity-input">Qty:</label>
-                        <input type="number" id="quantity-input" name="quantity" min="1">
+                      <label for="quantity-input">Qty:</label>
+                      <input type="number" id="quantity-input" name="quantity" min="1" value="1">
                     </div>
                     <input type="hidden" name="product_id" value="<%= product.product_id %>">
                     <button type="submit" id="add-cart-btn">Add To Cart</button>
-                </form>
+                  </form>
 
             </div>
         </div>

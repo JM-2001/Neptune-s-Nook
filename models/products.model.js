@@ -40,9 +40,9 @@ function getCategoryById(id) {
 async function createNewProduct(product) {
   let sql = "SELECT category_id FROM Categories WHERE category_name = ?;";
   let category = await db.get(sql, product.productCategory);
-  
+
   if (!category) {
-      throw new Error(`Category ${product.productCategory} not found`);
+    throw new Error(`Category ${product.productCategory} not found`);
   }
 
   sql = 'INSERT INTO Products ("product_name", "product_desc", "product_img_url", "product_price", "category_id") VALUES (?, ?, ?, ?, ?);';
@@ -51,38 +51,27 @@ async function createNewProduct(product) {
   return item;
 }
 
-
- 
-
-/*
-
-function createNew(params) {
-  let sql =
-    'INSERT INTO menu ("id","name","category","subcategory","price","cost") ' +
-    "VALUES(?, ?, ?, ?, ?, ?);";
+function updateProductById(product) {
+  let sql = 'UPDATE Products SET product_name = ?, sci_name = ?, product_desc = ?, product_img_url = ?, product_price = ?, featured_bool = ?, category_id = ? WHERE product_id = ?;';
+  const params = [
+    product.productName,
+    product.sciName,
+    product.productDesc,
+    product.productImagePath,
+    product.productPrice ? product.productPrice.replace('$', '') : null,
+    product.featuredBool,
+    product.categoryId,
+    product.productId
+  ];
   const item = db.run(sql, params);
   return item;
-};
+}
 
-function search(params) {
-  let sql = 'SELECT * FROM menu WHERE name LIKE ?;';
-  let menu = db.all(sql, params);
-  return menu;
-};
-
-function deleteById(id) {
-  let sql = 'DELETE FROM MENU WHERE id =?';
-  const response = db.run(sql, id);
-  return response;
-};
-
-function update(params) {
-  let sql = 'UPDATE menu SET name =?, category =?,subcategory =?,price =?,cost =? WHERE id =?;';
-  const response = db.run(sql, params);
-  return response;
-};
-
-*/
+function createNewProductAdmin(product) {
+  let sql = "INSERT INTO Products (product_name, sci_name, product_desc, product_img_url, product_price, featured_bool, category_id) VALUES (?, ?, ?, ?, ?, ?, ?);";
+  const item = db.run(sql, [product.productName, product.productSciName, product.productDesc, product.productImgPath, product.productPrice, product.productFeatured, product.productCate]);
+  return item;
+}
 
 module.exports = {
   getAll,
@@ -92,11 +81,6 @@ module.exports = {
   getCategoryById,
   createNewProduct,
   getAllAndCategoryName,
-
-  /*
-  createNew,
-  search,
-  deleteById,
-  update,
-  */
+  updateProductById,
+  createNewProductAdmin,
 };
