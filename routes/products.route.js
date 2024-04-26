@@ -2,22 +2,21 @@
 const express = require("express");
 const router = express.Router();
 
+const multer = require("multer");
+const upload = multer({ storage: multer.memoryStorage() });
+
 const productsController = require("../controllers/products.controller");
+const isAdmin = require('../auth/auth.middleware');
 
 router.get("/all", productsController.getAll);
 router.get("/category/:category", productsController.getAllByCategory);
 router.get("/featured", productsController.getAllByFeatured);
 router.get("/product/:id", productsController.getOneById);
 
-router.post('/bulk-upload', productsController.bulkUpload);
 
-router.get("/admin/product-edit", productsController.getAllAndCategoryName);
-
-/*
-router.post("/new", menucontroller.createNew);
-router.get("/search", menucontroller.searchByName);
-router.delete("/delete/:id", menucontroller.deleteById);
-router.put("/update/:id", menucontroller.update)
-*/
+router.post('/bulk-upload', isAdmin, upload.single('uploadFile'), productsController.bulkUpload);
+router.get("/admin/product-edit", isAdmin, productsController.getAllAndCategoryName);
+router.post("/admin/product-edit/update", isAdmin, productsController.updateProductById);
+router.post("/admin/create-product", isAdmin, productsController.createNewProductAdmin);
 
 module.exports = router;

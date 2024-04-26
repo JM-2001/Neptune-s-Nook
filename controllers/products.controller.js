@@ -4,14 +4,18 @@ const express = require("express");
 const app = express();
 
 const multer = require("multer");
-app.use(multer().none());
+const upload = multer;
+const fs = require("fs").promises;
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+//app.use(multer().none());
 
 const model = require("../models/products.model");
 const userModel = require("../models/users.model");
+const cartModel = require("../models/cart.model");
 
-const upload = multer({ storage: multer.memoryStorage() });
+
 
 
 function getAll(req, res, next) {
@@ -35,7 +39,8 @@ function getAllAndCategoryName(req, res, next) {
   //console.log('User Type:', user_type);
   //console.log('User ID:', user_id);
 
-  let products = model.getAllAndCategoryName();
+  //let products = model.getAllAndCategoryName();
+  let products = model.getAll();
   try {
     //res.json(model.getAll());
     res.render("admin/product-edit", {
@@ -49,7 +54,7 @@ function getAllAndCategoryName(req, res, next) {
     console.error("Error while getting products ", err.message);
     next(err);
   }
-}  
+}
 
 function getAllByCategory(req, res, next) {
   let loggedIn = req.user ? true : false;
@@ -80,24 +85,6 @@ function getAllByCategory(req, res, next) {
   }
 }
 
-/*
-function getAllByFeatured(req, res, next) {
-  let featuredProducts = model.getAllByFeatured();
-  let loggedIn = req.user ? true : false;
-  let user_type = null;
-  if (req.user) {
-    user_type = req.user.user_type;
-  }
-  console.log('User Type:', user_type);
-  try {
-    res.render('index', { products: featuredProducts, loggedIn: loggedIn, user_type: user_type, title: "Neptune's Nook Splash Page" });
-  } catch (err) {
-    console.error("Error while getting products ", err.message);
-    next(err);
-  }
-}
-*/
-
 function getAllByFeatured(req, res, next) {
   let featuredProducts = model.getAllByFeatured();
   let loggedIn = req.user ? true : false;
@@ -123,64 +110,112 @@ function getAllByFeatured(req, res, next) {
   }
 }
 
-function getOneById(req, res, next) {
+async function getOneById(req, res, next) {
   let loggedIn = req.user ? true : false;
   let user_type = null;
   let user_id = null;
+
   if (req.user) {
     user_type = req.user.user_type;
     user_id = req.user.user_id;
   }
-  //console.log('User Type:', user_type);
-  //console.log('User ID:', user_id);
+
+  console.log("Fetching product with ID:", req.params.id);
+  console.log("User ID:", user_id);
 
   let id = req.params.id;
   try {
     let product = model.getOneById(id);
-    //res.json(model.getOneById(req.params.id));
-    res.render("product-pages/details",
-      {
-        product: product,
-        loggedIn: loggedIn,
-        user_type: user_type,
-        user_id: user_id,
-        title: 'Product #' + id
-      });
+    let isInCart = false;
+
+    if (loggedIn) {
+      let cart = await cartModel.getCartByUserId(user_id);
+      console.log("Fetched cart:", cart);
+
+      if (cart && cart.products) {
+        isInCart = cart.products.some(
+          (product) => product.product_id === parseInt(id)
+        );
+        console.log("Is product in cart:", isInCart);
+      }
+    }
+
+    res.render("product-pages/details", {
+      product: product,
+      loggedIn: loggedIn,
+      user_type: user_type,
+      user_id: user_id,
+      title: 'Product #' + id,
+      isInCart: isInCart
+    });
   } catch (err) {
-    console.error("Error while getting products ", err.message);
+    console.error("Error while getting product details", err.message);
     next(err);
   }
 }
 
 
 async function bulkUpload(req, res, next) {
-  let jsonData = req.body.jsonData;
-
-  console.log(req.body); // log the body
-
-  if (!jsonData) {
-    return res.status(400).send('No data provided');
-  }
-
-  let products;
   try {
-    products = JSON.parse(jsonData);
+    // Parse the JSON file
+    const products = JSON.parse(req.file.buffer.toString());
+
+    // Loop through the products and insert each one
+    for (const product of products) {
+      await model.createNewProduct(product);
+    }
+
+    // Send a success response
+    //res.json({ message: 'Products uploaded successfully' });
+    res.redirect('/products/admin/product-edit');
+
   } catch (err) {
-    console.error("Error while parsing JSON data ", err.message);
+    console.error("Error while uploading products ", err.message);
     next(err);
   }
-
-  for (let product of products) {
-    try {
-      await model.createNewProduct(product);
-    } catch (err) {
-      console.error("Error while creating product ", err.message);
-      next(err);
-    }
-  }
-
-  res.status(200).send('Products uploaded successfully');
 }
+
+function updateProductById(req, res, next) {
+  let product = {
+    productName: req.body.productName,
+    sciName: req.body.productSciName,
+    productDesc: req.body.productDesc,
+    productImagePath: req.body.productImgPath,
+    productPrice: req.body.productPrice,
+    featuredBool: req.body.productFeatured,
+    categoryId: req.body.productCate,
+    productId: req.body.productId
+  };
+  console.log(product)
+  try {
+    let updatedProduct = model.updateProductById(product);
+    //res.json(updatedProduct);
+    res.redirect('/products/admin/product-edit');
+  } catch (err) {
+    console.error("Error while updating product ", err.message);
+    next(err);
+  }
+}
+
+function createNewProductAdmin(req, res, next) {
+  let product = {
+    productName: req.body.productName,
+    productSciName: req.body.productSciName,
+    productDesc: req.body.productDesc,
+    productImgPath: req.body.productImgPath,
+    productPrice: req.body.productPrice,
+    productFeatured: req.body.productFeatured,
+    productCate: req.body.productCate
+  };
+  try {
+    model.createNewProductAdmin(product);
+    res.redirect('/products/admin/product-edit');
+  } catch (err) {
+    console.error("Error while creating product ", err.message);
+    next(err);
+  }
+}
+
 
 module.exports = {
   getAll,
@@ -189,6 +224,8 @@ module.exports = {
   getAllByFeatured,
   getOneById,
   bulkUpload,
+  updateProductById,
+  createNewProductAdmin,
   /*
   createNew,
   searchByName,

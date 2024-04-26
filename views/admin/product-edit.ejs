@@ -89,12 +89,12 @@
             <div id="bottom-nav-bar-admin">
                 <ul>
                     <li>
-                        <a href="bulk-upload.html">
+                        <a href="/user/admin/bulk-upload">
                             Bulk Upload Products
                         </a>
                     </li>
                     <li>
-                        <a href="product-edit.html">
+                        <a href="/products/admin/product-edit">
                             Edit Product
                         </a>
                     </li>
@@ -119,20 +119,20 @@
             <form class="form-filter">
                 <fieldset>
                     <div>
-                        <input type="radio" id="option-fish-tanks" name="option-fish-tanks" value="option-fish-tanks">
+                        <input type="radio" id="option-fish-tanks" name="option-category" value="option-fish-tanks">
                         <label for="option-fish-tanks">Fish Tanks</label>
                     </div>
                     <div>
-                        <input type="radio" id="option-tank-supplies" name="option-tank-supplies"
+                        <input type="radio" id="option-tank-supplies" name="option-category"
                             value="option-tank-supplies">
                         <label for="option-tank-supplies">Tank Supplies</label>
                     </div>
                     <div>
-                        <input type="radio" id="option-tank-decor" name="option-tank-decor" value="option-tank-decor">
+                        <input type="radio" id="option-tank-decor" name="option-category" value="option-tank-decor">
                         <label for="option-tank-decor">Tank Decor</label>
                     </div>
                     <div>
-                        <input type="radio" id="option-fish" name="option-fish" value="option-fish">
+                        <input type="radio" id="option-fish" name="option-category" value="option-fish">
                         <label for="option-fish">Fish</label>
                     </div>
                 </fieldset>
@@ -146,44 +146,107 @@
                 <button type="button" id="create-product-btn" onclick="displayCreateProduct()">Create</button>
             </div>
 
+            <form id="product-listing-add" class="product-listing-add-hidden" action="/products/admin/create-product" method="post">        
+                <div class="listing-div">
+                    <label for="product-name">Product Name:</label>
+                    <input type="text" id="product-name" name="productName">
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-sci-name">Product Scienific Name:</label>
+                    <input type="text" id="product-sci-name" name="productSciName">
+                </div>  
+        
+                <div class="listing-div">
+                    <label for="product-desc">Product Description:</label>
+                    <textarea id="product-desc" name="productDesc"></textarea>
+                </div>
+
+                <div class="listing-div">
+                    <label>Product Category: </label>
+                    <select id="product-cate" name="productCate">
+                        <option value="1">Fish Tanks</option>
+                        <option value="2">Fish Tank Supplies</option>
+                        <option value="3">Tank Decor</option>
+                        <option value="4">Fish</option>
+                    </select>
+                </div>
+        
+                <div class="listing-div">
+                    <label for="product-img-path">Product Image Path:</label>
+                    <input type="text" id="product-img-path" name="productImgPath">
+                </div>
+        
+                <div class="listing-div">
+                    <label for="product-price">Product Price:</label>
+                    <input type="number" id="product-price" name="productPrice">
+                </div>
+
+                <div class="listing-div">
+                    <label for="product-featured">Featured (0 = no, 1 = yes):</label>
+                    <input type="number" id="product-featured" name="productFeatured" min="0" max="1">
+                </div>  
+        
+                <div class="listing-btn-div">
+                    <label>Actions:</label>
+                    <div>
+                        <button type="submit" class="save-btn">Save</button>
+                    </div>
+                </div>
+            </form>
 
             <% products.forEach(function(product) { %>
-                <form id="product-listing-<%= product.product_id %>" class="product-listing">
+                <form id="product-listing-<%= product.product_id %>" class="product-listing" action="/products/admin/product-edit/update" method="post">
                     <div class="listing-div">
                         <label for="product-id-<%= product.product_id %>">Product ID:</label>
-                        <input type="number" id="product-id-<%= product.product_id %>" name="product-id" value="<%= product.product_id %>" readonly>
+                        <input type="number" id="product-id-<%= product.product_id %>" name="productId" value="<%= product.product_id %>" readonly>
                     </div>
             
                     <div class="listing-div">
                         <label for="product-name-<%= product.product_id %>">Product Name:</label>
-                        <input type="text" id="product-name-<%= product.product_id %>" name="product-name" value="<%= product.product_name %>" readonly>
+                        <input type="text" id="product-name-<%= product.product_id %>" name="productName" value="<%= product.product_name %>" readonly>
                     </div>
+
+                    <div class="listing-div">
+                        <label for="product-sci-name-<%= product.product_id %>">Product Scienific Name:</label>
+                        <input type="text" id="product-sci-name-<%= product.product_id %>" name="productSciName" value="<%= product.sci_name %>" readonly>
+                    </div>  
             
                     <div class="listing-div">
                         <label for="product-desc-<%= product.product_id %>">Product Description:</label>
-                        <textarea id="product-desc-<%= product.product_id %>" name="product-desc"><%= product.product_desc %></textarea readonly>
+                        <textarea id="product-desc-<%= product.product_id %>" name="productDesc"><%= product.product_desc %></textarea readonly>
                     </div>
-            
+
                     <div class="listing-div">
-                        <label for="product-cate-<%= product.product_id %>">Product Category:</label>
-                        <input type="text" id="product-cate-<%= product.product_id %>" name="product-cate" value="<%= product.category_name %>" readonly>
+                        <label>Product Category: </label>
+                        <select id="product-cate-<%= product.product_id %>" name="productCate" disabled>
+                            <option value="1" <%= product.category_id == 1 ? 'selected' : '' %>>Fish Tanks</option>
+                            <option value="2" <%= product.category_id == 2 ? 'selected' : '' %>>Fish Tank Supplies</option>
+                            <option value="3" <%= product.category_id == 3 ? 'selected' : '' %>>Tank Decor</option>
+                            <option value="4" <%= product.category_id == 4 ? 'selected' : '' %>>Fish</option>
+                        </select>
                     </div>
             
                     <div class="listing-div">
                         <label for="product-img-path-<%= product.product_id %>">Product Image Path:</label>
-                        <input type="text" id="product-img-path-<%= product.product_id %>" name="product-img-path" value="<%= product.product_img_url %>" readonly>
+                        <input type="text" id="product-img-path-<%= product.product_id %>" name="productImgPath" value="<%= product.product_img_url %>" readonly>
                     </div>
             
                     <div class="listing-div">
                         <label for="product-price-<%= product.product_id %>">Product Price:</label>
-                        <input type="text" id="product-price-<%= product.product_id %>" name="product-price" value="<%= product.product_price %>" readonly>
+                        <input type="number" id="product-price-<%= product.product_id %>" name="productPrice" value="<%= product.product_price %>" readonly>
                     </div>
+
+                    <div class="listing-div">
+                        <label for="product-featured-<%= product.product_id %>">Featured (0 = no, 1 = yes):</label>
+                        <input type="number" id="product-featured-<%= product.product_id %>" name="productFeatured" value="<%= product.featured_bool %>" min="0" max="1" readonly>
+                    </div>  
             
                     <div class="listing-btn-div">
                         <label>Actions:</label>
-                        <form>
-                            <button type="button" class="save-btn hidden">Save</button>
-                        </form>
+                        <div>
+                            <button type="submit" class="save-btn hidden">Save</button>
+                        </div>
                         <button type="button" class="edit-btn" onclick="makeProductEdit(<%= product.product_id %>)">Edit</button>
                     </div>
                 </form>

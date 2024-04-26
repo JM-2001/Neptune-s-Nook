@@ -604,6 +604,10 @@ input#shipping-zipcode::-webkit-inner-spin-button {
     gap: 20px;
 }
 
+.shopping-cart-item-right-btns form {
+    display: contents;
+}
+
 .shopping-cart-item-quantity-div {
     border: 2px solid black;
     border-radius: 10px;
